@@ -6,3 +6,5 @@ docs/
 jsdoc/
 tmp/
 test.js
+.idea/
+.vscode/
