@@ -3,6 +3,10 @@
 #
 
 root: true
+
+ignorePatterns:
+  - '**/*.js'
+
 env:
   browser: false
   node: true
@@ -138,7 +142,4 @@ overrides:
       es6: true
     rules:
       no-alert: 0
-
-      ignorePatterns:
-  - '**/*.js'
 
