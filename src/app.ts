@@ -35,15 +35,20 @@ function drawShape(ctx: CanvasRenderingContext2D, shape: Shape) {
   }
 }
 
-document.getElementById('drawButton').addEventListener('click', () => {
-  const textarea = document.getElementById('shapeData') as HTMLTextAreaElement;
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d');
+const drawButton = document.getElementById('drawButton');
+if (drawButton) {
+  drawButton.addEventListener('click', () => {
+    const textarea = document.getElementById('shapeData') as HTMLTextAreaElement;
+    const canvas = document.getElementById('canvas') as HTMLCanvasElement | null;
+    const ctx = canvas?.getContext('2d');
 
-  try {
-    const shape: Shape = JSON.parse(textarea.value);
-    drawShape(ctx, shape);
-  } catch (error) {
-    console.error('Hiba történt a formák rajzolása közben:', error);
-  }
-});
+    try {
+      const shape: Shape = JSON.parse(textarea.value);
+      if (ctx) {
+        drawShape(ctx, shape);
+      }
+    } catch (error) {
+      console.error('Hiba történt a formák rajzolása közben:', error);
+    }
+  });
+}
