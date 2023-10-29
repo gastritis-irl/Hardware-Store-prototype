@@ -48,7 +48,7 @@ if (drawButton) {
         drawShape(ctx, shape);
       }
     } catch (error) {
-      console.error('Hiba történt a formák rajzolása közben:', error);
+      console.error('Error during the parsing of the JSON:', error);
     }
   });
 }
