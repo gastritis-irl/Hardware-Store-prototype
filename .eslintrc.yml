@@ -138,3 +138,7 @@ overrides:
       es6: true
     rules:
       no-alert: 0
+
+      ignorePatterns:
+  - '**/*.js'
+
