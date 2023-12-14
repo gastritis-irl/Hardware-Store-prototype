@@ -21,5 +21,8 @@ export const darkTheme = createTheme({
     secondary: {
       main: '#19857b',
     },
+    background: {
+      default: '#333',
+    },
   },
 });

@@ -1,43 +1,24 @@
 import { useMutation } from '@tanstack/react-query';
-import { login, register } from '../api/api';
-import { Severity, useSnackbar } from '../util/SnackbarContext';
+import { login, refreshToken, register } from '../api/api';
+import { storeToken, getToken } from '../api/token';
 import apiClient from '../api/axiosInstance';
 
-let tokenCache: string | null = null;
-let tokenTimeout: NodeJS.Timeout | null = null;
-
-export const getToken = () => tokenCache;
-
-apiClient.interceptors.request.use((config) => {
+apiClient.interceptors.request.use(async (config) => {
   const token = getToken();
-  const snackbar = useSnackbar();
-  console.log('Token:', token); // Log the token
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  } else if (snackbar) {
-    snackbar.openSnackbar('No token found', 'error');
-  } else {
-    console.log('No token found');
+    const isTokenExpired = false; // TODO: Check if token is expired
+    if (isTokenExpired) {
+      const newToken = await refreshToken();
+      storeToken(newToken);
+      config.headers.Authorization = `Bearer ${newToken}`;
+    } else {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
 
-const storeToken = (token: string) => {
-  // Store the token in memory
-  tokenCache = token;
-  // Set a timeout to clear the token after 60 minutes
-  if (tokenTimeout) {
-    clearTimeout(tokenTimeout);
-  }
-  tokenTimeout = setTimeout(
-    () => {
-      tokenCache = null;
-    },
-    60 * 60 * 1000,
-  );
-};
-
-export const useRegister = (openSnackbar: (message: string, severity: Severity) => void) => {
+export const useRegister = () => {
   return useMutation<string, Error, { email: string; password: string }>({
     mutationFn: async ({ email, password }) => {
       const token = await register(email, password);
@@ -48,12 +29,12 @@ export const useRegister = (openSnackbar: (message: string, severity: Severity) 
       return token;
     },
     onError: (error) => {
-      openSnackbar(error.message, 'error');
+      console.error(error);
     },
   });
 };
 
-export const useLogin = (openSnackbar: (message: string, severity: Severity) => void) => {
+export const useLogin = () => {
   return useMutation<string, Error, { email: string; password: string }>({
     mutationFn: async ({ email, password }) => {
       const token = await login(email, password);
@@ -64,7 +45,19 @@ export const useLogin = (openSnackbar: (message: string, severity: Severity) => 
       return token;
     },
     onError: (error) => {
-      openSnackbar(error.message, 'error');
+      console.error(error);
+    },
+  });
+};
+
+export const useLogout = () => {
+  return useMutation<void, Error, void>({
+    mutationFn: async () => {
+      // Clear the token
+      await storeToken('');
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 };

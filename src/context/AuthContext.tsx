@@ -1,8 +1,14 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-import { login, logout, register } from '../api/api';
+import { jwtDecode } from 'jwt-decode';
+import { useLogin, useRegister, useLogout } from '../hooks/useAuth';
+
+type User = {
+  email: string;
+  // Add other user properties here
+};
 
 type AuthContextType = {
-  user: string | null;
+  user: User | null;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -15,26 +21,25 @@ type AuthProviderProps = {
 };
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const loginMutation = useLogin();
+  const registerMutation = useRegister();
+  const logoutMutation = useLogout();
 
   const loginUser = async (email: string, password: string) => {
-    const token = await login(email, password);
-    // Store the token in local storage
-    localStorage.setItem('token', token);
-    setUser(email);
+    const token = await loginMutation.mutateAsync({ email, password });
+    const decodedToken = jwtDecode(token) as User;
+    setUser(decodedToken);
   };
 
   const registerUser = async (email: string, password: string) => {
-    const token = await register(email, password);
-    // Store the token in local storage
-    localStorage.setItem('token', token);
-    setUser(email);
+    const token = await registerMutation.mutateAsync({ email, password });
+    const decodedToken = jwtDecode(token) as User;
+    setUser(decodedToken);
   };
 
   const logoutUser = async () => {
-    await logout();
-    // Remove the token from local storage
-    localStorage.removeItem('token');
+    await logoutMutation.mutateAsync();
     setUser(null);
   };
 
@@ -51,7 +56,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-// Create a hook to use the AuthContext, this is what you can call in your components
 export const useAuth = () => {
   const context = useContext(AuthContext);
 

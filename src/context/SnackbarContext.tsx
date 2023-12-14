@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
-import CustomSnackbar from './CustomSnackbar';
+import CustomSnackbar from '../util/CustomSnackbar';
 
 type SnackbarContextType = {
   openSnackbar: (newMessage: React.SetStateAction<string>, newSeverity?: Severity) => void;

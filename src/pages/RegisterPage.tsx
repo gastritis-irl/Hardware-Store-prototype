@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { useRegister } from '../hooks/useAuth';
-import { useSnackbar } from '../util/SnackbarContext';
+import { useSnackbar } from '../context/SnackbarContext';
 
 function RegisterPage() {
   const [email, setEmail] = useState('');

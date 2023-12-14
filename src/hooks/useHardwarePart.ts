@@ -12,5 +12,6 @@ export const useHardwarePart = (id: number) => {
         }
         return response.data;
       }),
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 };

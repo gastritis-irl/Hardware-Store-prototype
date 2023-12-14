@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { useLogin } from '../hooks/useAuth';
-import { useSnackbar } from '../util/SnackbarContext';
+import { useSnackbar } from '../context/SnackbarContext';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const loginMutation = useLogin();
   const snackbar = useSnackbar();
+  const loginMutation = useLogin();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

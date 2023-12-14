@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCreateHardwarePart } from '../hooks/useCreateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
 import CustomSnackbar from '../util/CustomSnackbar';
-import { useSnackbar } from '../util/SnackbarContext';
+import { useSnackbar } from '../context/SnackbarContext';
 
 function HardwareCreatePage() {
   const [open, setOpen] = useState(false);
@@ -41,6 +41,7 @@ function HardwareCreatePage() {
         }
       },
       onError: (error) => {
+        setOpen(true);
         if (snackbar) {
           snackbar.openSnackbar(error.message, 'error');
         }
