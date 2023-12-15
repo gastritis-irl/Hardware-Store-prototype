@@ -32,7 +32,7 @@ function HardwareCreatePage() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     createPartMutation.mutate(partData, {
-      onSuccess: (data) => {
+      onSuccess: (data: HardwarePart) => {
         navigate(`/detail/${data.id}`);
         // Open the Snackbar
         setOpen(true);
@@ -40,7 +40,7 @@ function HardwareCreatePage() {
           snackbar.openSnackbar('Hardware part created successfully!', 'success');
         }
       },
-      onError: (error) => {
+      onError: (error: Error) => {
         setOpen(true);
         if (snackbar) {
           snackbar.openSnackbar(error.message, 'error');
