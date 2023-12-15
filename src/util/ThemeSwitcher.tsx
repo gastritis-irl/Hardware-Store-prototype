@@ -6,8 +6,8 @@ type ThemeSwitcherProps = {
   toggleDarkMode: () => void;
 };
 
-const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({ darkMode, toggleDarkMode }) => (
-  <Switch checked={darkMode} onChange={toggleDarkMode} />
-);
+function ThemeSwitcher({ darkMode, toggleDarkMode }: ThemeSwitcherProps) {
+  return <Switch checked={darkMode} onChange={toggleDarkMode} />;
+}
 
 export default ThemeSwitcher;
