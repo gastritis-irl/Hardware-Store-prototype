@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCreateHardwarePart } from '../hooks/useCreateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
@@ -34,7 +34,6 @@ function HardwareCreatePage() {
     createPartMutation.mutate(partData, {
       onSuccess: (data: HardwarePart) => {
         navigate(`/detail/${data.id}`);
-        // Open the Snackbar
         setOpen(true);
         if (snackbar) {
           snackbar.openSnackbar('Hardware part created successfully!', 'success');
@@ -50,14 +49,67 @@ function HardwareCreatePage() {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} noValidate autoComplete="off">
-      <TextField label="Name" name="name" value={partData.name} onChange={handleChange} />
-      <TextField label="Manufacturer" name="manufacturer" value={partData.manufacturer} onChange={handleChange} />
-      <TextField label="Category" name="category" value={partData.category} onChange={handleChange} />
-      <TextField label="Price" name="price" value={partData.price} onChange={handleChange} type="number" />
-      <TextField label="Description" name="description" value={partData.description} onChange={handleChange} />
-      <TextField label="User ID" name="userId" value={partData.userId} onChange={handleChange} type="number" />
-      <Button type="submit" variant="contained">
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      noValidate
+      autoComplete="off"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        maxWidth: '400px',
+        margin: 'auto',
+        padding: '1rem',
+      }}
+    >
+      <Typography variant="h4" align="center">
+        Create Hardware Part
+      </Typography>
+      <TextField label="Name" name="name" value={partData.name} onChange={handleChange} variant="outlined" fullWidth />
+      <TextField
+        label="Manufacturer"
+        name="manufacturer"
+        value={partData.manufacturer}
+        onChange={handleChange}
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        label="Category"
+        name="category"
+        value={partData.category}
+        onChange={handleChange}
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        label="Price"
+        name="price"
+        value={partData.price}
+        onChange={handleChange}
+        type="number"
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        label="Description"
+        name="description"
+        value={partData.description}
+        onChange={handleChange}
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        label="User ID"
+        name="userId"
+        value={partData.userId}
+        onChange={handleChange}
+        type="number"
+        variant="outlined"
+        fullWidth
+      />
+      <Button type="submit" variant="contained" color="primary" size="large">
         Create
       </Button>
       <CustomSnackbar

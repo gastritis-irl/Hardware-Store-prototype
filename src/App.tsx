@@ -12,7 +12,7 @@ import { darkTheme, lightTheme } from './util/Theme';
 import { SnackbarProvider } from './context/SnackbarContext';
 import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage'; // Import SnackbarProvider
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);

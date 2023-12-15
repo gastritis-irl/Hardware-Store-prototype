@@ -53,7 +53,6 @@ export const useLogin = () => {
 export const useLogout = () => {
   return useMutation<void, Error, void>({
     mutationFn: async () => {
-      // Clear the token
       await storeToken('');
     },
     onError: (error) => {

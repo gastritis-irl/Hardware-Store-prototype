@@ -8,7 +8,7 @@ import CustomSnackbar from '../util/CustomSnackbar';
 
 function HardwareEditPage() {
   const { id } = useParams();
-  const idNumber = Number(id) || 0; // Convert id to number and provide a default value
+  const idNumber = Number(id) || 0;
   const [open, setOpen] = useState(false);
   const [partData, setPartData] = useState<HardwarePart>({
     id: 0,

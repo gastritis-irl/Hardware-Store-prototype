@@ -12,7 +12,6 @@ export const useDeleteHardwarePart = () => {
         }
       }),
     onSuccess: () => {
-      // Invalidate the hardware parts list query to trigger a refetch
       queryClient.invalidateQueries({
         queryKey: ['hardwareParts'],
       });

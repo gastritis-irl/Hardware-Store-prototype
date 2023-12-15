@@ -38,7 +38,6 @@ export function SnackbarProvider({ children }: SnackbarProviderProps) {
   );
 }
 
-// Create a hook to use the SnackbarContext, this is what you can call in your components
 export const useSnackbar = () => {
   const context = useContext(SnackbarContext);
 

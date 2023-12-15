@@ -4,7 +4,6 @@ import { useLogin, useRegister, useLogout } from '../hooks/useAuth';
 
 type User = {
   email: string;
-  // Add other user properties here
 };
 
 type AuthContextType = {
