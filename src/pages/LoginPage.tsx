@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useLogin } from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 import { useSnackbar } from '../context/SnackbarContext';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {
+    loginMutation: { mutate },
+  } = useAuth();
   const navigate = useNavigate();
   const snackbar = useSnackbar();
-  const loginMutation = useLogin();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    loginMutation.mutate(
+    mutate(
       { email, password },
       {
         onSuccess: () => {

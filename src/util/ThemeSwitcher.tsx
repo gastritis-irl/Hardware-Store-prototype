@@ -1,5 +1,7 @@
 import React from 'react';
-import { Switch } from '@mui/material';
+import { IconButton } from '@mui/material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 type ThemeSwitcherProps = {
   darkMode: boolean;
@@ -7,7 +9,7 @@ type ThemeSwitcherProps = {
 };
 
 function ThemeSwitcher({ darkMode, toggleDarkMode }: ThemeSwitcherProps) {
-  return <Switch checked={darkMode} onChange={toggleDarkMode} />;
+  return <IconButton onClick={toggleDarkMode}>{darkMode ? <Brightness7Icon /> : <Brightness4Icon />}</IconButton>;
 }
 
 export default ThemeSwitcher;

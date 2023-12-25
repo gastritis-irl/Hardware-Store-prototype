@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useRegister } from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 import { useSnackbar } from '../context/SnackbarContext';
 
 function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const registerMutation = useRegister();
   const snackbar = useSnackbar();
+  const {
+    registerMutation: { mutate },
+  } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    registerMutation.mutate(
+    mutate(
       { email, password },
       {
         onSuccess: () => {
@@ -22,7 +24,7 @@ function RegisterPage() {
             snackbar.openSnackbar('User registered successfully!', 'success');
           }
         },
-        onError: (error) => {
+        onError: (error: Error) => {
           if (snackbar) {
             snackbar.openSnackbar(error.message, 'error');
           }
@@ -61,6 +63,9 @@ function RegisterPage() {
         onChange={(e) => setEmail(e.target.value)}
         variant="outlined"
         fullWidth
+        sx={{
+          color: 'secondary',
+        }}
       />
       <TextField
         label="Password"
@@ -69,6 +74,7 @@ function RegisterPage() {
         onChange={(e) => setPassword(e.target.value)}
         variant="outlined"
         fullWidth
+        color="secondary"
       />
       <Button type="submit" variant="contained" color="primary" size="large">
         Register
