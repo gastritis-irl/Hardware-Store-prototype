@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   AppBar,
   Avatar,
@@ -6,19 +6,22 @@ import {
   Button,
   Card,
   CardContent,
+  IconButton,
   Menu,
   MenuItem,
   Popover,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
 
-import ThemeSwitcher from './ThemeSwitcher';
 import { useAuthContext } from '../context/AuthContext';
 import { useAuth } from '../hooks/useAuth';
 import CustomButton from './CustomButton';
+import ThemeSwitcher from './ThemeSwitcher';
 
 type NavbarProps = {
   darkMode: boolean;
@@ -37,8 +40,6 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
     mutate();
     navigate('/');
   };
-
-  useEffect(() => {}, [authState]);
 
   const [anchorEl, setAnchorEl] = useState<null | SVGSVGElement>(null);
   const handlePopoverOpen = (event: React.MouseEvent<SVGSVGElement>) => {
@@ -62,8 +63,8 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
       <Typography variant="h6" component="div" color="primary" sx={{ textAlign: 'left' }}>
         Hardware Store
       </Typography>
-      <AppBar position="static" color="primary">
-        <Toolbar color="primary" sx={{ paddingBottom: '0 2rem' }}>
+      <AppBar position="static" color="inherit">
+        <Toolbar sx={{ paddingBottom: '0 2rem' }}>
           <Box
             sx={{
               flexGrow: 1,
@@ -73,14 +74,26 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
               justifyContent: 'flex-start',
             }}
           >
-            <RouterLink to="/" style={{ textDecoration: 'none' }}>
-              <CustomButton color="inherit">Home</CustomButton>
-            </RouterLink>
-            {isLoggedIn && (
-              <CustomButton color="inherit" onClick={handleMenuClick}>
-                Menu
-              </CustomButton>
-            )}
+            <Tooltip title="Home" arrow>
+              <IconButton
+                component={RouterLink}
+                to="/"
+                color="primary"
+                sx={{
+                  '&:hover': {
+                    color: 'secondary.main', // Change color on hover
+                    transform: 'scale(1.2)', // Scale the icon on hover
+                    transition: 'transform 0.3s ease-in-out', // Smooth transition
+                  },
+                }}
+              >
+                <HomeIcon />
+              </IconButton>
+            </Tooltip>
+
+            <Button color="primary" onClick={handleMenuClick}>
+              Menu
+            </Button>
             <Menu
               id="simple-menu"
               anchorEl={menuAnchorEl}
@@ -88,20 +101,25 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
               open={Boolean(menuAnchorEl)}
               onClose={handleMenuClose}
             >
-              <MenuItem onClick={handleMenuClose} component={RouterLink} to="/create">
-                Create
+              <MenuItem onClick={handleMenuClose} component={RouterLink} to="/list">
+                Products
               </MenuItem>
+              {isLoggedIn && (
+                <>
+                  <MenuItem onClick={handleMenuClose} component={RouterLink} to="/create">
+                    Create
+                  </MenuItem>
+                </>
+              )}
             </Menu>
           </Box>
           {isLoggedIn ? (
             <>
-              <RouterLink to="/profile">
-                <AccountCircle
-                  color="secondary"
-                  onClick={(event) => handlePopoverOpen(event)}
-                  sx={{ cursor: 'pointer' }}
-                />
-              </RouterLink>
+              <AccountCircle
+                color="secondary"
+                onClick={(event: React.MouseEvent<SVGSVGElement, MouseEvent>) => handlePopoverOpen(event)}
+                sx={{ cursor: 'pointer' }}
+              />
               <Popover
                 open={open}
                 anchorEl={anchorEl}
@@ -125,27 +143,26 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
                     <Typography variant="h5" component="div" align="center" color="text.secondary">
                       {authState.email}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" align="center">
-                      Role: {authState.role}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" align="center">
-                      User ID: {authState.id}
-                    </Typography>
+                    <RouterLink to="/profile">
+                      <Button color="primary" fullWidth>
+                        Visit Profile
+                      </Button>
+                    </RouterLink>
                   </CardContent>
                 </Card>
               </Popover>
-              <Button color="inherit" onClick={handleLogout}>
+              <Button color="primary" onClick={handleLogout}>
                 Logout
               </Button>
             </>
           ) : (
             <>
-              <Button color="inherit" component={RouterLink} to="/login">
+              <Button color="primary" component={RouterLink} to="/login">
                 Login
               </Button>
-              <Button color="inherit" component={RouterLink} to="/register">
-                Register
-              </Button>
+              <RouterLink to="/register">
+                <CustomButton color="inherit">Register</CustomButton>
+              </RouterLink>
             </>
           )}
           <Box sx={{ ml: 2 }}>

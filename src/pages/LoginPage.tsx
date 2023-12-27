@@ -46,6 +46,9 @@ function LoginPage() {
         maxWidth: '400px',
         margin: 'auto',
         padding: '1rem',
+        // minHeight: '100vh',
+        maxHeight: '50vh',
+        justifyContent: 'center',
       }}
     >
       <Typography variant="h4" align="center">

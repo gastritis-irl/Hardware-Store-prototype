@@ -19,27 +19,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     id: -1,
   });
 
-  // const login = (authData: AuthEntity) => {
-  //   setAuthState(authData);
-  //   setToken(authData.token);
-  // };
-  //
-  // const logout = () => {
-  //   setAuthState({
-  //     email: '',
-  //     token: '',
-  //     role: '',
-  //     expirationDate: '',
-  //     userId: -1,
-  //   });
-  //   setToken('');
-  // };
-  //
-  // const register = (authData: AuthEntity) => {
-  //   setAuthState(authData);
-  //   setToken(authData.token);
-  // };
-
   const value = useMemo(() => ({ authState, setAuthState }), [authState, setAuthState]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

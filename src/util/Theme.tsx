@@ -4,7 +4,7 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#2329a2', // Indigo
+      main: '#2329a2',
     },
     secondary: {
       main: '#69959e',
@@ -26,7 +26,7 @@ export const lightTheme = createTheme({
       secondary: '#69959e',
     },
     background: {
-      default: '#f5f5f5',
+      default: '#e0e0ff', // Light blue
     },
   },
 });
@@ -57,7 +57,7 @@ export const darkTheme = createTheme({
       secondary: '#69959e', // White
     },
     background: {
-      default: '#0a0e56', // Dark Grey
+      default: '#343739', // Dark Grey
     },
   },
 });

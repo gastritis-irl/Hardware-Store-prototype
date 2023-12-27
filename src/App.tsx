@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Container, ThemeProvider } from '@mui/material';
+import { Container, ThemeProvider, CssBaseline } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import HardwareListPage from './pages/HardwareListPage';
@@ -14,6 +14,8 @@ import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
+import Footer from './util/Footer'; // Import Footer
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -25,18 +27,19 @@ function App() {
   const queryClient = new QueryClient();
 
   return (
-    <Container sx={{ flexGrow: 1, justifyContent: 'flex' }}>
+    <Container sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+            <CssBaseline />
             <SnackbarProvider>
               {' '}
-              {/* Wrap your application with SnackbarProvider */}
               <Router>
                 <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
                 <Suspense fallback={<div>Loading...</div>}>
                   <Routes>
-                    <Route path="/" element={<HardwareListPage />} />
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/list" element={<HardwareListPage />} />
                     <Route path="/create" element={<HardwareCreatePage />} />
                     <Route path="/edit/:id" element={<HardwareEditPage />} />
                     <Route path="/detail/:id" element={<HardwareDetailPage />} />
@@ -45,6 +48,7 @@ function App() {
                     <Route path="/profile" element={<ProfilePage />} />
                   </Routes>
                 </Suspense>
+                <Footer />
               </Router>
             </SnackbarProvider>
           </ThemeProvider>

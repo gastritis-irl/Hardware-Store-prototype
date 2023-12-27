@@ -7,4 +7,7 @@ export default defineConfig({
     outDir: '../dist',
   },
   root: './src',
+  define: {
+    'process.env.API_KEY': '"J8PUxVw1W9gRfMGV0yL8gQ==kzkXvHdjPWoKT9Sr"',
+  },
 });

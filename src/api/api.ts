@@ -9,6 +9,13 @@ const apiClient = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
+export const randomImage = () =>
+  axios.get('https://api.api-ninjas.com/v1/randomimage?category=technology', {
+    headers: {
+      'X-Api-Key': process.env.API_KEY,
+      Accept: 'image/jpg',
+    },
+  });
 export const fetchHardwareParts = () => apiClient.get('/hardware');
 export const fetchHardwarePart = (id: number) => apiClient.get(`/hardware/${id}`);
 export const createHardwarePart = (data: HardwarePart) => apiClient.post('/hardware', data);
@@ -72,8 +79,8 @@ apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 403 && !originalRequest._retry) {
-      originalRequest._retry = true;
+    if (error.response.status === 403 && !originalRequest.retry) {
+      originalRequest.retry = true;
       const newToken = await refreshToken();
       if (newToken) {
         setToken(newToken);

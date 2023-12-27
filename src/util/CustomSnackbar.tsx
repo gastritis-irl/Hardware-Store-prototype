@@ -19,8 +19,8 @@ function CustomSnackbar({ open, handleClose, message, severity }: CustomSnackbar
         severity={severity}
         sx={{
           width: '100%',
-          backgroundColor: theme.palette[severity]?.main,
-          color: theme.palette[severity]?.contrastText,
+          backgroundColor: theme.palette[severity]?.contrastText,
+          color: theme.palette[severity]?.main,
         }}
       >
         {message}

@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { useHardwarePart } from '../hooks/useHardwarePart';
 import { useDeleteHardwarePart } from '../hooks/useDeleteHardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
-import CustomSnackbar from '../util/CustomSnackbar';
 
 function HardwareDetailPage() {
-  const [open, setOpen] = useState(false);
   const { id } = useParams();
   const idNumber = Number(id) || 0;
   const navigate = useNavigate();
@@ -19,7 +17,6 @@ function HardwareDetailPage() {
     deletePartMutation.mutate(idNumber, {
       onSuccess: () => {
         navigate('/');
-        setOpen(true);
         if (snackbar) {
           snackbar.openSnackbar('Part deleted successfully!', 'success');
         }
@@ -36,7 +33,7 @@ function HardwareDetailPage() {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} sx={{ marginTop: '1rem' }}>
       <Grid item xs={12} md={6}>
         <CardMedia
           component="img"
@@ -66,12 +63,6 @@ function HardwareDetailPage() {
           </CardActions>
         </Card>
       </Grid>
-      <CustomSnackbar
-        open={open}
-        handleClose={() => setOpen(false)}
-        message="Part deleted successfully!"
-        severity="success"
-      />
     </Grid>
   );
 }
