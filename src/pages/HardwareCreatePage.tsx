@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AddCircle } from '@mui/icons-material';
 import { useCreateHardwarePart } from '../hooks/useCreateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
@@ -46,8 +47,9 @@ function HardwareCreatePage() {
         partData={partData}
         setPartData={setPartData}
         handleSubmit={handleSubmit}
-        formTitle="Create Hardware Part"
-        submitButtonText="Create"
+        formTitle="Add Hardware Part"
+        submitButtonText="Add Part"
+        icon={<AddCircle color="primary" sx={{ fontSize: 40 }} />}
       />
     </>
   );

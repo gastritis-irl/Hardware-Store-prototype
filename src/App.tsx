@@ -15,7 +15,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
-import Footer from './util/Footer'; // Import Footer
+import Footer from './util/Footer';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -40,7 +40,7 @@ function App() {
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/list" element={<HardwareListPage />} />
-                    <Route path="/create" element={<HardwareCreatePage />} />
+                    <Route path="/add" element={<HardwareCreatePage />} />
                     <Route path="/edit/:id" element={<HardwareEditPage />} />
                     <Route path="/detail/:id" element={<HardwareDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />

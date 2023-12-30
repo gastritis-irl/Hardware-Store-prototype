@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Transform } from '@mui/icons-material';
 import { useHardwarePart } from '../hooks/useHardwarePart';
 import { useUpdateHardwarePart } from '../hooks/useUpdateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
@@ -49,6 +50,11 @@ function HardwareEditPage() {
             snackbar.openSnackbar('Hardware part updated successfully!', 'success');
           }
         },
+        onError: (error: Error) => {
+          if (snackbar) {
+            snackbar.openSnackbar(error.message, 'error');
+          }
+        },
       },
     );
   };
@@ -61,6 +67,7 @@ function HardwareEditPage() {
         handleSubmit={handleSubmit}
         formTitle="Edit Hardware Part"
         submitButtonText="Save"
+        icon={<Transform color="primary" />}
       />
     </>
   );

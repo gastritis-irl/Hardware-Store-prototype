@@ -8,9 +8,10 @@ type HardwareFormProps = {
   handleSubmit: (event: React.FormEvent) => void;
   formTitle: string;
   submitButtonText: string;
+  icon: React.ReactElement;
 };
 
-function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText }: HardwareFormProps) {
+function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText, icon }: HardwareFormProps) {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPartData({
       ...partData,
@@ -18,6 +19,7 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
     });
   };
 
+  const newIcon = React.cloneElement(icon, { color: 'inherit', sx: { fontSize: 20 } });
   return (
     <Box
       component="form"
@@ -28,14 +30,17 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem',
-        maxWidth: '400px',
+        maxWidth: '600px',
         margin: 'auto',
         padding: '1rem',
       }}
     >
-      <Typography variant="h4" align="center">
-        {formTitle}
-      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {icon}
+        <Typography variant="h4" align="center" color="primary">
+          {formTitle}
+        </Typography>
+      </Box>
       <TextField label="Name" name="name" value={partData.name} onChange={handleChange} variant="outlined" fullWidth />
       <TextField
         label="Manufacturer"
@@ -54,7 +59,7 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         fullWidth
       />
       <TextField
-        label="Price"
+        label="Price($)"
         name="price"
         value={partData.price}
         onChange={handleChange}
@@ -70,7 +75,14 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         variant="outlined"
         fullWidth
       />
-      <Button type="submit" variant="contained" color="primary" size="large">
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        size="large"
+        sx={{ flexDirection: 'row', gap: '0.5rem' }}
+      >
+        {newIcon}
         {submitButtonText}
       </Button>
     </Box>

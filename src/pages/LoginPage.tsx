@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useAuth } from '../hooks/useAuth';
 import { useSnackbar } from '../context/SnackbarContext';
 
@@ -35,25 +36,31 @@ function LoginPage() {
 
   return (
     <Box
+      alignItems="center"
+      alignContent="center"
+      alignSelf="center"
       component="form"
       onSubmit={handleSubmit}
       noValidate
-      autoComplete="off"
+      autoComplete="on"
       sx={{
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem',
-        maxWidth: '400px',
+        minWidth: '600px',
         margin: 'auto',
         padding: '1rem',
-        // minHeight: '100vh',
-        maxHeight: '50vh',
-        justifyContent: 'center',
+        // justifyContent: 'flex',
+        alignItems: 'center',
+        minHeight: '60vh',
       }}
     >
-      <Typography variant="h4" align="center">
-        Login
-      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <LockOpenIcon color="primary" sx={{ fontSize: 40 }} />
+        <Typography variant="h4" align="center" color="primary">
+          Login
+        </Typography>
+      </Box>
       <TextField
         label="Email"
         type="email"
@@ -61,6 +68,16 @@ function LoginPage() {
         onChange={(e) => setEmail(e.target.value)}
         variant="outlined"
         fullWidth
+        InputProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
+        InputLabelProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
       />
       <TextField
         label="Password"
@@ -69,9 +86,25 @@ function LoginPage() {
         onChange={(e) => setPassword(e.target.value)}
         variant="outlined"
         fullWidth
+        InputProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
+        InputLabelProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
       />
-      <Button type="submit" variant="contained" color="primary" size="large">
-        Log in
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        sx={{ maxWidth: '50% ', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+      >
+        <LockOpenIcon color="inherit" sx={{ fontSize: 20 }} />
+        Login
       </Button>
     </Box>
   );

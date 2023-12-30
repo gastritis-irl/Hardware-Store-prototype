@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, FormControlLabel, Switch } from '@mui/material';
+import { Box, Switch, Tooltip } from '@mui/material';
 import NightsStayIcon from '@mui/icons-material/NightsStay';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
@@ -11,8 +11,8 @@ type ThemeSwitcherProps = {
 function ThemeSwitcher({ darkMode, toggleDarkMode }: ThemeSwitcherProps) {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-      <FormControlLabel
-        control={
+      <Tooltip title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'} arrow>
+        <Box>
           <Switch
             checked={darkMode}
             onChange={toggleDarkMode}
@@ -29,10 +29,8 @@ function ThemeSwitcher({ darkMode, toggleDarkMode }: ThemeSwitcherProps) {
               },
             }}
           />
-        }
-        sx={{ color: darkMode ? '#69959e' : '#2329a2' }}
-        label={darkMode ? 'Dark Mode' : 'Light Mode'}
-      />
+        </Box>
+      </Tooltip>
     </Box>
   );
 }

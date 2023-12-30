@@ -4,14 +4,17 @@ import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } f
 import { useHardwarePart } from '../hooks/useHardwarePart';
 import { useDeleteHardwarePart } from '../hooks/useDeleteHardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
+import CustomButton from '../util/CustomButton';
+import { useAuthContext } from '../context/AuthContext';
 
 function HardwareDetailPage() {
   const { id } = useParams();
   const idNumber = Number(id) || 0;
-  const navigate = useNavigate();
   const { data: partData, isLoading, isError } = useHardwarePart(idNumber);
   const deletePartMutation = useDeleteHardwarePart();
   const snackbar = useSnackbar();
+  const { authState } = useAuthContext();
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     deletePartMutation.mutate(idNumber, {
@@ -54,12 +57,16 @@ function HardwareDetailPage() {
             <Typography variant="h6">Category: {partData.category}</Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" color="primary" onClick={() => navigate(`/edit/${partData.id}`)}>
-              Edit
-            </Button>
-            <Button size="small" color="secondary" onClick={handleDelete}>
-              Delete
-            </Button>
+            {(authState.role === 'ADMIN' || authState.id === partData.userId) && (
+              <>
+                <CustomButton size="small" color="primary" onClick={() => navigate(`/edit/${partData.id}`)}>
+                  Edit
+                </CustomButton>
+                <Button size="small" color="error" onClick={handleDelete}>
+                  Delete
+                </Button>
+              </>
+            )}
           </CardActions>
         </Card>
       </Grid>

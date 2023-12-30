@@ -1,53 +1,131 @@
-import React from 'react';
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Pagination, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useHardwareParts } from '../hooks/useHardwareParts';
 import { HardwarePart } from '../types/HardwarePart';
 
 type HardwarePartsGridProps = {
-  hardwareParts: HardwarePart[];
+  orderBy?: string;
+  direction?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  textSearch?: string;
+  userId?: number;
 };
 
-function HardwarePartsGrid({ hardwareParts }: HardwarePartsGridProps) {
+function HardwarePartsGrid({
+  orderBy = 'id',
+  direction = 'asc',
+  minPrice = 0,
+  maxPrice = 1000000,
+  textSearch = '',
+  userId = -1,
+}: HardwarePartsGridProps) {
+  const [page, setPage] = useState(1);
+  const { data, isLoading, isError } = useHardwareParts(
+    orderBy,
+    direction,
+    page,
+    minPrice,
+    maxPrice,
+    textSearch,
+    userId,
+  );
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError || !data) {
+    return <div>An error occurred while fetching data</div>;
+  }
+
   return (
-    <Grid container spacing={2}>
-      {hardwareParts.map((part: HardwarePart) => (
-        <Grid item xs={12} sm={6} md={4} key={part.id}>
-          <Card sx={{ height: 350, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', mt: 2 }}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={Math.random() < 0.5 ? '/alt1.png' : '/alt2.png'}
-              alt={part.name}
-            />
-            <CardContent>
-              <Typography color="text.secondary" variant="h5">
-                {part.name}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
+    <>
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            flexWrap: 'wrap',
+            marginLeft: 'auto',
+            justifyContent: 'center',
+          }}
+        >
+          {data.hardwareParts.map((part: HardwarePart) => (
+            <Grid item xs={12} sm={6} md={4} key={part.id}>
+              <Card
                 sx={{
-                  overflow: 'auto',
-                  maxHeight: 100,
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
+                  height: 350,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  maxWidth: 250,
+                  '&:hover': {
+                    boxShadow: 5,
+                    transform: 'scale(1.05)',
+                    transition: 'all 0.3s ease-in-out',
                   },
                 }}
               >
-                {part.description}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <RouterLink to={`/detail/${part.id}`}>
-                <Button size="small" color="primary">
-                  View Details
-                </Button>
-              </RouterLink>
-            </CardActions>
-          </Card>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={Math.random() < 0.5 ? '/alt1.png' : '/alt2.png'}
+                  alt={part.name}
+                />
+                <CardContent>
+                  <Typography color="text.secondary" variant="h5">
+                    {part.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      overflow: 'auto',
+                      maxHeight: 100,
+                      '&::-webkit-scrollbar': {
+                        display: 'none',
+                      },
+                    }}
+                  >
+                    {part.description}
+                  </Typography>
+                </CardContent>
+                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <CardActions>
+                    <RouterLink to={`/detail/${part.id}`}>
+                      <Button size="small" color="primary">
+                        View Details
+                      </Button>
+                    </RouterLink>
+                  </CardActions>
+                  <CardContent>
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                      <Typography variant="body1" color="text.secondary">
+                        Price:
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color="success.main"
+                        sx={{ fontWeight: 'bold', marginLeft: '0.5rem' }}
+                      >
+                        ${part.price}
+                      </Typography>
+                    </Box>
+                  </CardContent>
+                </Box>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-      ))}
-    </Grid>
+        <Pagination count={data.nrOfPages} page={page} onChange={handlePageChange} sx={{ margin: '1rem auto' }} />
+      </Box>
+    </>
   );
 }
 

@@ -16,7 +16,30 @@ export const randomImage = () =>
       Accept: 'image/jpg',
     },
   });
-export const fetchHardwareParts = () => apiClient.get('/hardware');
+export const fetchHardwareParts = (
+  orderBy?: string,
+  direction?: string,
+  pageNumber?: number,
+  minPrice?: number,
+  maxPrice?: number,
+  textSearch?: string,
+  userId?: number,
+) => {
+  let url = '/hardware';
+  const params = new URLSearchParams();
+
+  if (orderBy) params.append('orderBy', orderBy);
+  if (direction) params.append('direction', direction);
+  if (pageNumber) params.append('pageNumber', pageNumber.toString());
+  if (minPrice) params.append('MinPrice', minPrice.toString());
+  if (maxPrice) params.append('MaxPrice', maxPrice.toString());
+  if (textSearch) params.append('TextSearch', textSearch);
+  if (userId) params.append('userId', userId.toString());
+
+  if (params.toString()) url += `?${params.toString()}`;
+
+  return apiClient.get(url);
+};
 export const fetchHardwarePart = (id: number) => apiClient.get(`/hardware/${id}`);
 export const createHardwarePart = (data: HardwarePart) => apiClient.post('/hardware', data);
 export const updateHardwarePart = (id: number, data: HardwarePart) => apiClient.put(`/hardware/${id}`, data);

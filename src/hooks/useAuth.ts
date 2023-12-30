@@ -12,19 +12,6 @@ type UserCredentials = {
 export const useAuth = () => {
   const { setAuthState } = useAuthContext();
 
-  // const loginMutation = () => {
-  //   return useMutation<AuthEntity | null, Error, UserCredentials>({
-  //     mutationFn: async ({ email, password }: UserCredentials) => {
-  //       const response = await login(email, password);
-  //       if (response) {
-  //         setAuthState(response);
-  //         setToken(response.token);
-  //       }
-  //       return response;
-  //     },
-  //   });
-  // };
-
   const loginMutation = useMutation({
     mutationFn: async ({ email, password }: UserCredentials) => {
       const response: AuthEntity | null = await login(email, password);
@@ -35,19 +22,6 @@ export const useAuth = () => {
       return response;
     },
   });
-
-  // const registerMutation = () => {
-  //   return useMutation<AuthEntity | null, Error, UserCredentials>({
-  //     mutationFn: async ({ email, password }: UserCredentials) => {
-  //       const response = await register(email, password);
-  //       if (response) {
-  //         setAuthState(response);
-  //         setToken(response.token);
-  //       }
-  //       return response;
-  //     },
-  //   });
-  // };
 
   const registerMutation = useMutation({
     mutationFn: async ({ email, password }: UserCredentials) => {
@@ -60,22 +34,6 @@ export const useAuth = () => {
       return response;
     },
   });
-
-  // const logoutMutation = () => {
-  //   return useMutation<void, Error, void>({
-  //     mutationFn: async () => {
-  //       await logout();
-  //       setAuthState({
-  //         email: '',
-  //         token: '',
-  //         role: '',
-  //         expirationDate: '',
-  //         userId: -1,
-  //       });
-  //       setToken('');
-  //     },
-  //   });
-  // };
 
   const logoutMutation = useMutation({
     mutationFn: async () => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { AddCircle } from '@mui/icons-material';
 import { useAuth } from '../hooks/useAuth';
 import { useSnackbar } from '../context/SnackbarContext';
 
@@ -40,22 +41,31 @@ function RegisterPage() {
 
   return (
     <Box
+      alignItems="center"
+      alignContent="center"
+      alignSelf="center"
       component="form"
       onSubmit={handleSubmit}
       noValidate
-      autoComplete="off"
+      autoComplete="on"
       sx={{
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem',
-        maxWidth: '400px',
+        minWidth: '600px',
         margin: 'auto',
         padding: '1rem',
+        justifyContent: 'flex',
+        alignItems: 'center',
+        minHeight: '60vh',
       }}
     >
-      <Typography variant="h4" align="center">
-        Register
-      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <AddCircle color="primary" sx={{ fontSize: 40 }} />
+        <Typography variant="h4" align="center" color="primary">
+          Register
+        </Typography>
+      </Box>
       <TextField
         label="Email"
         type="email"
@@ -77,6 +87,7 @@ function RegisterPage() {
         color="secondary"
       />
       <Button type="submit" variant="contained" color="primary" size="large">
+        <AddCircle sx={{ marginRight: '0.5rem' }} />
         Register
       </Button>
     </Box>
