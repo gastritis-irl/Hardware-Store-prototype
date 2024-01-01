@@ -29,6 +29,15 @@ export const lightTheme = createTheme({
       default: '#e0e0ff', // Light blue
     },
   },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        html {
+          overflow-y: scroll;
+        }
+      `,
+    },
+  },
 });
 
 export const darkTheme = createTheme({
@@ -58,6 +67,15 @@ export const darkTheme = createTheme({
     },
     background: {
       default: '#343739', // Dark Grey
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        html {
+          overflow-y: scroll;
+        }
+      `,
     },
   },
 });

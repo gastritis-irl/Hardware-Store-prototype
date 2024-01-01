@@ -21,7 +21,14 @@ function NavigationMenu() {
       <Button color="primary" onClick={handleMenuClick}>
         Menu
       </Button>
-      <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleMenuClose}>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        disableScrollLock
+      >
         <MenuItem
           onClick={handleMenuClose}
           component={RouterLink}

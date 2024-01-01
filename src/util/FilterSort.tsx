@@ -23,11 +23,9 @@ function FilterSort({
   return (
     <Box
       sx={{
-        dbackgroundColor: 'background.paper',
+        backgroundColor: 'background.paper',
         padding: '1rem',
-        // boxShadow: 5,
         borderRadius: '4px',
-        marginRight: '1rem',
         maxWidth: '300px',
         minWidth: '300px',
         maxHeight: '370px',

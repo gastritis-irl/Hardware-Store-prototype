@@ -37,6 +37,7 @@ function UserMenu({ handleLogout }: UserMenuProps) {
           vertical: 'top',
           horizontal: 'center',
         }}
+        disableScrollLock
       >
         <Card sx={{ maxWidth: 345, margin: 'auto' }}>
           <Avatar

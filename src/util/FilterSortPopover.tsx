@@ -42,6 +42,7 @@ function FilterSortPopover({
           vertical: 'top',
           horizontal: 'center',
         }}
+        disableScrollLock
       >
         <FilterSort
           orderBy={orderBy}

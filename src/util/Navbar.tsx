@@ -92,15 +92,7 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
               </Tooltip>
               <NavigationMenu />
             </Box>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-              }}
-            >
+            <Box>
               {isLoggedIn && isProfilePage && (
                 <FilterSortPopover
                   open={filterOpen}
