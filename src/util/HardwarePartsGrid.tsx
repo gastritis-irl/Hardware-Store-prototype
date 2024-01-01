@@ -46,25 +46,39 @@ function HardwarePartsGrid({
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Grid
           container
           spacing={2}
-          sx={{
-            flexWrap: 'wrap',
-            marginLeft: 'auto',
-            justifyContent: 'center',
-          }}
+          sx={
+            {
+              // flexWrap: 'wrap',
+              // marginLeft: 'auto',
+              // justifyContent: 'flex-start',
+            }
+          }
         >
           {data.hardwareParts.map((part: HardwarePart) => (
-            <Grid item xs={12} sm={6} md={4} key={part.id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg
+              key={part.id}
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+              }}
+            >
               <Card
                 sx={{
                   height: 350,
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  maxWidth: 250,
+                  minWidth: 250,
                   '&:hover': {
                     boxShadow: 5,
                     transform: 'scale(1.05)',

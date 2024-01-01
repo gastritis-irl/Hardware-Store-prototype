@@ -13,7 +13,7 @@ function HomePage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '100vh',
+          minHeight: '70vh',
           gap: '1rem',
         }}
       >
@@ -26,7 +26,7 @@ function HomePage() {
         <Button variant="contained" color="primary" onClick={() => navigate('/login')}>
           Get Started
         </Button>
-        <Box sx={{ position: 'absolute', bottom: 0, width: '100%', textAlign: 'center', pb: 2 }}>
+        <Box sx={{ position: 'relative', bottom: 0, width: '100%', textAlign: 'center', pb: 2 }}>
           <Typography variant="body2">Contact us: email@example.com | +1 234 567 890</Typography>
         </Box>
       </Box>
