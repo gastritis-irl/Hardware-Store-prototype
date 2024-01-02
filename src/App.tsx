@@ -7,7 +7,7 @@ import HardwareListPage from './pages/HardwareListPage';
 import HardwareCreatePage from './pages/HardwareCreatePage';
 import HardwareEditPage from './pages/HardwareEditPage';
 import HardwareDetailPage from './pages/HardwareDetailPage';
-import { Navbar } from './util/Navbar';
+import { Navbar } from './components/Navbar';
 import { darkTheme, lightTheme } from './util/Theme';
 import { SnackbarProvider } from './context/SnackbarContext';
 import { AuthProvider } from './context/AuthContext';
@@ -15,7 +15,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
-import Footer from './util/Footer';
+import Footer from './components/Footer';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);

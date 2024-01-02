@@ -4,7 +4,7 @@ import { Transform } from '@mui/icons-material';
 import { useHardwarePart } from '../hooks/useHardwarePart';
 import { useUpdateHardwarePart } from '../hooks/useUpdateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
-import HardwareForm from '../util/HardwareForm';
+import HardwareForm from '../components/HardwareForm';
 import { useSnackbar } from '../context/SnackbarContext';
 
 function HardwareEditPage() {

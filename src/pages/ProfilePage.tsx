@@ -2,7 +2,7 @@ import React from 'react';
 import { Avatar, Box, Card, CardContent, Container, Grid, Typography } from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useAuthContext } from '../context/AuthContext';
-import HardwarePartsGrid from '../util/HardwarePartsGrid';
+import HardwarePartsGrid from '../components/HardwarePartsGrid';
 import { useFilterSort } from '../hooks/useFilterSort';
 
 function ProfilePage() {

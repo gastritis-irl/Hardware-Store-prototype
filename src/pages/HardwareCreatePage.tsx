@@ -5,7 +5,7 @@ import { useCreateHardwarePart } from '../hooks/useCreateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
 import { useAuthContext } from '../context/AuthContext';
-import HardwareForm from '../util/HardwareForm';
+import HardwareForm from '../components/HardwareForm';
 
 function HardwareCreatePage() {
   const [partData, setPartData] = useState<HardwarePart>({

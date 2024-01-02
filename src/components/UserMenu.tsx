@@ -50,7 +50,7 @@ function UserMenu({ handleLogout }: UserMenuProps) {
               {authState.email}
             </Typography>
             <RouterLink to="/profile">
-              <Button color="primary" fullWidth>
+              <Button color="primary" fullWidth onClick={handlePopoverClose}>
                 Visit Profile
               </Button>
             </RouterLink>
