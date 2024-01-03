@@ -13,6 +13,8 @@ function HardwareEditPage() {
   const idNumber = Number(id) || 0;
   const [partData, setPartData] = useState<HardwarePart>({
     id: 0,
+    createdAt: '',
+    updatedAt: '',
     name: '',
     manufacturer: '',
     category: '',

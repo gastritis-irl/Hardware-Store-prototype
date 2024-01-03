@@ -10,6 +10,8 @@ import HardwareForm from '../components/HardwareForm';
 function HardwareCreatePage() {
   const [partData, setPartData] = useState<HardwarePart>({
     id: 0,
+    createdAt: '',
+    updatedAt: '',
     name: '',
     manufacturer: '',
     category: '',
