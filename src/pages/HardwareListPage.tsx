@@ -5,54 +5,43 @@ import FilterSort from '../components/FilterSort';
 import { useFilterSort } from '../hooks/useFilterSort';
 
 function HardwareListPage() {
-  const { orderBy, direction, minPrice, maxPrice, textSearch, handleOrderChange, handleDirectionChange, handleFilter } =
-    useFilterSort();
+  const {
+    orderBy,
+    direction,
+    minPrice,
+    maxPrice,
+    textSearch,
+    category,
+    handleOrderChange,
+    handleDirectionChange,
+    handleFilter,
+  } = useFilterSort();
 
   return (
     <Box
       sx={{
         marginTop: '1rem',
         display: 'flex',
-        // gap: '2rem',
-        '@media (max-width: 600px)': {
-          flexDirection: 'column',
-          gap: '1rem',
-          alignItems: 'center',
-        },
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        gap: '1rem',
       }}
     >
-      <Box
-        sx={{
-          position: 'sticky',
-          top: '5rem',
-          zIndex: 10,
-          backgroundColor: 'background.paper',
-          boxShadow: 5,
-          borderRadius: '4px',
-          marginRight: '1rem',
-          maxHeight: '370px',
-          '@media (max-width: 600px)': {
-            maxWidth: '100%',
-            position: 'relative',
-            marginBottom: '1rem',
-          },
-        }}
-      >
-        <FilterSort
-          orderBy={orderBy}
-          direction={direction}
-          handleOrderChange={handleOrderChange}
-          handleDirectionChange={handleDirectionChange}
-          handleFilter={handleFilter}
-        />
-      </Box>
-
+      <FilterSort
+        orderBy={orderBy}
+        direction={direction}
+        handleOrderChange={handleOrderChange}
+        handleDirectionChange={handleDirectionChange}
+        handleFilter={handleFilter}
+      />
       <HardwarePartsGrid
         orderBy={orderBy}
         direction={direction}
         minPrice={minPrice}
         maxPrice={maxPrice}
         textSearch={textSearch}
+        categoryName={category}
       />
     </Box>
   );

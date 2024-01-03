@@ -8,7 +8,7 @@ function Footer() {
       sx={{
         backgroundColor: (theme) => theme.palette.primary.main,
         color: (theme) => theme.palette.secondary.contrastText,
-        mt: 5,
+        mt: 'auto',
         py: 3,
       }}
     >

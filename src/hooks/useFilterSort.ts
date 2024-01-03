@@ -12,6 +12,7 @@ export const useFilterSort = () => {
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
   const [textSearch, setTextSearch] = useState('');
+  const [categoryName, setCategoryName] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     setOrderBy(params.get('orderBy') || 'id');
@@ -19,6 +20,7 @@ export const useFilterSort = () => {
     setMinPrice(Number(params.get('minPrice')) || undefined);
     setMaxPrice(Number(params.get('maxPrice')) || undefined);
     setTextSearch(params.get('textSearch') || '');
+    setCategoryName(params.get('categoryName') || undefined);
   }, [location]);
 
   const handleOrderChange = (event: SelectChangeEvent) => {
@@ -26,7 +28,7 @@ export const useFilterSort = () => {
     setOrderBy(value);
     navigate({
       pathname: location.pathname,
-      search: `?minPrice=${minPrice}&maxPrice=${maxPrice}&textSearch=${textSearch}&orderBy=${value}&direction=${direction}`,
+      search: `?categoryName=${categoryName}&minPrice=${minPrice}&maxPrice=${maxPrice}&textSearch=${textSearch}&orderBy=${value}&direction=${direction}`,
     });
   };
 
@@ -35,7 +37,7 @@ export const useFilterSort = () => {
     setDirection(value);
     navigate({
       pathname: location.pathname,
-      search: `?minPrice=${minPrice}&maxPrice=${maxPrice}&textSearch=${textSearch}&orderBy=${orderBy}&direction=${value}`,
+      search: `?categoryName=${categoryName}&minPrice=${minPrice}&maxPrice=${maxPrice}&textSearch=${textSearch}&orderBy=${orderBy}&direction=${value}`,
     });
   };
 
@@ -45,7 +47,7 @@ export const useFilterSort = () => {
     setTextSearch(tSearch);
     navigate({
       pathname: location.pathname,
-      search: `?minPrice=${mPrice}&maxPrice=${maPrice}&textSearch=${tSearch}&orderBy=${orderBy}&direction=${direction}`,
+      search: `?categoryName=${categoryName}&minPrice=${mPrice}&maxPrice=${maPrice}&textSearch=${tSearch}&orderBy=${orderBy}&direction=${direction}`,
     });
   };
 
@@ -55,6 +57,7 @@ export const useFilterSort = () => {
     minPrice,
     maxPrice,
     textSearch,
+    category: categoryName,
     handleOrderChange,
     handleDirectionChange,
     handleFilter,

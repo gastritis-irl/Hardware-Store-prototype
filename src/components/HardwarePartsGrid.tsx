@@ -11,6 +11,7 @@ type HardwarePartsGridProps = {
   maxPrice?: number;
   textSearch?: string;
   userId?: number;
+  categoryName?: string;
 };
 
 function HardwarePartsGrid({
@@ -20,6 +21,7 @@ function HardwarePartsGrid({
   maxPrice = 1000000,
   textSearch = '',
   userId = -1,
+  categoryName = '',
 }: HardwarePartsGridProps) {
   const [page, setPage] = useState(1);
   const { data, isLoading, isError } = useHardwareParts(
@@ -30,6 +32,7 @@ function HardwarePartsGrid({
     maxPrice,
     textSearch,
     userId,
+    categoryName,
   );
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
@@ -74,7 +77,7 @@ function HardwarePartsGrid({
             >
               <Card
                 sx={{
-                  height: 350,
+                  height: 400,
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',

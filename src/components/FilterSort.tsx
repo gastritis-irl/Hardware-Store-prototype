@@ -10,7 +10,7 @@ type FilterSortComponentProps = {
   // textSearch: string;
   handleOrderChange: (event: SelectChangeEvent) => void;
   handleDirectionChange: (event: SelectChangeEvent) => void;
-  handleFilter: (mPrice: number, maPrice: number, tSearch: string) => void;
+  handleFilter: (mPrice: number, maPrice: number, tSearch: string, category: string) => void;
 };
 
 function FilterSort({
@@ -26,9 +26,10 @@ function FilterSort({
         backgroundColor: 'background.paper',
         padding: '1rem',
         borderRadius: '4px',
+        boxShadow: 5,
         maxWidth: '300px',
         minWidth: '300px',
-        maxHeight: '370px',
+        maxHeight: '420px',
         flexDirection: 'column',
         '@media (max-width: 600px)': {
           maxWidth: '100%',

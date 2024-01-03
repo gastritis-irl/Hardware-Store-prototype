@@ -49,7 +49,7 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
       </Typography>
       <Box
         sx={{
-          flexGrow: 1,
+          // flexGrow: 1,
           position: 'sticky',
           top: '0.2rem',
           zIndex: 1,
@@ -60,8 +60,8 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
           sx={{
             borderRadius: 1,
             position: 'sticky',
-            top: 0,
-            zIndex: 1,
+            // top: 0,
+            // zIndex: 1,
           }}
         >
           <Toolbar sx={{ paddingBottom: '0 2rem' }}>

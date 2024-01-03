@@ -24,6 +24,7 @@ export const fetchHardwareParts = (
   maxPrice?: number,
   textSearch?: string,
   userId?: number,
+  categoryName?: string,
 ) => {
   let url = '/hardware';
   const params = new URLSearchParams();
@@ -35,6 +36,7 @@ export const fetchHardwareParts = (
   if (maxPrice) params.append('MaxPrice', maxPrice.toString());
   if (textSearch) params.append('TextSearch', textSearch);
   if (userId) params.append('userId', userId.toString());
+  if (categoryName) params.append('categoryName', categoryName);
 
   if (params.toString()) url += `?${params.toString()}`;
 
@@ -86,6 +88,38 @@ export const refreshToken = async () => {
 
 export const getHardwarePartsByUser = async (userId: number) => {
   const response = await apiClient.get(`/user/${userId}/hardware`);
+  return response.data;
+};
+
+export const getCategories = async () => {
+  const response = await apiClient.get('/category');
+  console.log('response1: ', response.data);
+  return response.data;
+};
+
+export const getCategory = async (id: number) => {
+  const response = await apiClient.get(`/category/${id}`);
+  return response.data;
+};
+
+export const createCategory = async (name: string, description: string) => {
+  const response = await apiClient.post('/category', {
+    name,
+    description,
+  });
+  return response.data;
+};
+
+export const updateCategory = async (id: number, name: string, description: string) => {
+  const response = await apiClient.put(`/category/${id}`, {
+    name,
+    description,
+  });
+  return response.data;
+};
+
+export const deleteCategory = async (id: number) => {
+  const response = await apiClient.delete(`/category/${id}`);
   return response.data;
 };
 
