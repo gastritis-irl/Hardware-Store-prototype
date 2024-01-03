@@ -91,9 +91,13 @@ export const getHardwarePartsByUser = async (userId: number) => {
   return response.data;
 };
 
-export const getCategories = async () => {
-  const response = await apiClient.get('/category');
-  console.log('response1: ', response.data);
+export const getCategories = async (pageNumber: number, pageSize: number) => {
+  const response = await apiClient.get('/category', {
+    params: {
+      pageNumber,
+      pageSize,
+    },
+  });
   return response.data;
 };
 

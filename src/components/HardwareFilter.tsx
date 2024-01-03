@@ -16,13 +16,13 @@ function HardwareFilter({ onFilter }: HardwareFilterProps) {
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
   const [textSearch, setTextSearch] = useState('');
   const [category, setCategory] = useState('');
-  const { data } = useGetCategories();
+  const { data } = useGetCategories(1, 15);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   let categoryNames: string[] = [];
 
   if (data) {
-    categoryNames = data?.map((categoryData) => categoryData.name) || [];
+    categoryNames = data?.categories.map((categoryData) => categoryData.name) || [];
   }
 
   useEffect(() => {

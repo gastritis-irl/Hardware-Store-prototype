@@ -24,11 +24,9 @@ function App() {
     setDarkMode(!darkMode);
   };
 
-  const queryClient = new QueryClient();
-
   return (
     <Container sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={new QueryClient()}>
         <AuthProvider>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />
