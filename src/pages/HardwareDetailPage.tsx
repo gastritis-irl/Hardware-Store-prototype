@@ -54,7 +54,7 @@ function HardwareDetailPage() {
             </Typography>
             <Typography variant="h6">Price: ${partData.price}</Typography>
             <Typography variant="h6">Manufacturer: {partData.manufacturer}</Typography>
-            <Typography variant="h6">Category: {partData.category}</Typography>
+            <Typography variant="h6">Category: {partData.categoryName}</Typography>
           </CardContent>
           <CardActions>
             {(authState.role === 'ADMIN' || authState.id === partData.userId) && (

@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Container, CssBaseline, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -20,13 +20,15 @@ import Footer from './components/Footer';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
+  const queryClient = useMemo(() => new QueryClient(), []);
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
   return (
     <Container sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <QueryClientProvider client={new QueryClient()}>
+      <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <CssBaseline />

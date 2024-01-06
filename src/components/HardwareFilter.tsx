@@ -46,7 +46,6 @@ function HardwareFilter({ onFilter }: HardwareFilterProps) {
 
   const handleCategoryChange = (event: SelectChangeEvent) => {
     const value = event.target.value as string;
-    console.log(value);
     setCategory(value);
   };
 

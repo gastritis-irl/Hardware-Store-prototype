@@ -53,7 +53,7 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
       <TextField
         label="Category"
         name="category"
-        value={partData.category}
+        value={partData.categoryName}
         onChange={handleChange}
         variant="outlined"
         fullWidth

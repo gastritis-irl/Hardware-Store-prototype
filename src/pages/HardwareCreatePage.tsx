@@ -14,7 +14,7 @@ function HardwareCreatePage() {
     updatedAt: '',
     name: '',
     manufacturer: '',
-    category: '',
+    categoryName: '',
     price: 0,
     description: '',
     userId: 0,

@@ -16,6 +16,7 @@ export const randomImage = () =>
       Accept: 'image/jpg',
     },
   });
+
 export const fetchHardwareParts = (
   orderBy?: string,
   direction?: string,
@@ -42,6 +43,7 @@ export const fetchHardwareParts = (
 
   return apiClient.get(url);
 };
+
 export const fetchHardwarePart = (id: number) => apiClient.get(`/hardware/${id}`);
 export const createHardwarePart = (data: HardwarePart) => apiClient.post('/hardware', data);
 export const updateHardwarePart = (id: number, data: HardwarePart) => apiClient.put(`/hardware/${id}`, data);
@@ -128,8 +130,7 @@ export const deleteCategory = async (id: number) => {
 };
 
 apiClient.interceptors.request.use((config) => {
-  const currentToken = getToken(); // Retrieve the current token
-  console.log('currentToken: ', currentToken);
+  const currentToken = getToken();
   if (currentToken) {
     config.headers.Authorization = `Bearer ${currentToken}`;
   }

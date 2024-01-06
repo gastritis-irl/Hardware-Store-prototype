@@ -17,7 +17,7 @@ function HardwareEditPage() {
     updatedAt: '',
     name: '',
     manufacturer: '',
-    category: '',
+    categoryName: '',
     price: 0,
     description: '',
     userId: 0,
@@ -42,10 +42,10 @@ function HardwareEditPage() {
           id: number;
           name: string;
           manufacturer: string;
-          category: string;
           price: number;
           description: string;
           userId: number;
+          categoryName: string;
         }) => {
           navigate(`/detail/${data.id}`);
           if (snackbar) {

@@ -4,7 +4,7 @@ export type HardwarePart = {
   updatedAt: string;
   name: string;
   manufacturer: string;
-  category: string;
+  categoryName: string;
   price: number;
   description: string;
   userId: number;

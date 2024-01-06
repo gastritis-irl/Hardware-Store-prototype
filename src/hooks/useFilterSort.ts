@@ -41,13 +41,14 @@ export const useFilterSort = () => {
     });
   };
 
-  const handleFilter = (mPrice: number, maPrice: number, tSearch: string) => {
+  const handleFilter = (mPrice: number, maPrice: number, tSearch: string, category: string) => {
     setMinPrice(mPrice);
     setMaxPrice(maPrice);
     setTextSearch(tSearch);
+    setCategoryName(category);
     navigate({
       pathname: location.pathname,
-      search: `?categoryName=${categoryName}&minPrice=${mPrice}&maxPrice=${maPrice}&textSearch=${tSearch}&orderBy=${orderBy}&direction=${direction}`,
+      search: `?categoryName=${category}&minPrice=${mPrice}&maxPrice=${maPrice}&textSearch=${tSearch}&orderBy=${orderBy}&direction=${direction}`,
     });
   };
 
