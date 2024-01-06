@@ -11,7 +11,7 @@ type FilterSortPopoverProps = {
   direction: string;
   handleOrderChange: (event: SelectChangeEvent) => void;
   handleDirectionChange: (event: SelectChangeEvent) => void;
-  handleFilter: (mPrice: number, maPrice: number, tSearch: string) => void;
+  handleFilter: (mPrice: number, maPrice: number, tSearch: string, category: string) => void;
 };
 
 function FilterSortPopover({
