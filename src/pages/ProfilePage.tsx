@@ -32,7 +32,7 @@ function ProfilePage() {
   }
 
   return (
-    <Grid container spacing={0} lg md sm xs sx={{ marginTop: '1rem', flexDirection: 'row' }}>
+    <Grid container spacing={0} sx={{ marginTop: '1rem', flexDirection: 'row' }}>
       <Grid
         container
         justifyContent="space-between"

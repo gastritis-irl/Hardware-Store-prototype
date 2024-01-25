@@ -31,6 +31,9 @@ function FilterSort({
         minWidth: '300px',
         maxHeight: '420px',
         flexDirection: 'column',
+        position: 'sticky',
+        zIndex: 1,
+        top: '5rem',
         '@media (max-width: 600px)': {
           maxWidth: '100%',
           position: 'relative',

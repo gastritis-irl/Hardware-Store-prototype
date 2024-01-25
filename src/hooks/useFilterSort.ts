@@ -9,18 +9,18 @@ export const useFilterSort = () => {
 
   const [orderBy, setOrderBy] = useState<string>('id');
   const [direction, setDirection] = useState<string>('asc');
-  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
-  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(0);
   const [textSearch, setTextSearch] = useState('');
-  const [categoryName, setCategoryName] = useState<string | undefined>(undefined);
+  const [categoryName, setCategoryName] = useState<string>('');
 
   useEffect(() => {
     setOrderBy(params.get('orderBy') || 'id');
     setDirection(params.get('direction') || 'asc');
-    setMinPrice(Number(params.get('minPrice')) || undefined);
-    setMaxPrice(Number(params.get('maxPrice')) || undefined);
+    setMinPrice(Number(params.get('minPrice')));
+    setMaxPrice(Number(params.get('maxPrice')));
     setTextSearch(params.get('textSearch') || '');
-    setCategoryName(params.get('categoryName') || undefined);
+    setCategoryName(params.get('categoryName') || '');
   }, [location]);
 
   const handleOrderChange = (event: SelectChangeEvent) => {
