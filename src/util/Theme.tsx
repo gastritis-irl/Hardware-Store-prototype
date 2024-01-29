@@ -79,3 +79,44 @@ export const darkTheme = createTheme({
     },
   },
 });
+
+export const customTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#90caf9',
+    },
+    secondary: {
+      main: '#f48fb1',
+    },
+    error: {
+      main: '#f44336',
+    },
+    warning: {
+      main: '#ff9800',
+    },
+    info: {
+      main: '#2196f3',
+    },
+    success: {
+      main: '#4caf50',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#90caf9',
+    },
+    background: {
+      default: '#656bf1',
+      paper: '#ae57ff',
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        body {
+          background-color: #656bf1;
+        }
+      `,
+    },
+  },
+});

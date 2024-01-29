@@ -4,4 +4,5 @@ export type AuthEntity = {
   email: string;
   expirationDate: string;
   id: number;
+  themeId: number;
 };

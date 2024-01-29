@@ -17,6 +17,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     role: '',
     expirationDate: '',
     id: -1,
+    themeId: 1,
   });
 
   const value = useMemo(() => ({ authState, setAuthState }), [authState, setAuthState]);

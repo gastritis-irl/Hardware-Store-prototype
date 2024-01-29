@@ -6,6 +6,7 @@ import { useUpdateHardwarePart } from '../hooks/useUpdateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
 import HardwareForm from '../components/HardwareForm';
 import { useSnackbar } from '../context/SnackbarContext';
+import { useAdminOrOwnerGuard } from '../hooks/useAdminOrOwnerGuard';
 
 function HardwareEditPage() {
   const { id } = useParams();
@@ -32,6 +33,8 @@ function HardwareEditPage() {
       setPartData(fetchedPartData);
     }
   }, [fetchedPartData]);
+
+  useAdminOrOwnerGuard(partData.userId);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

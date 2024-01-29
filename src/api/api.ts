@@ -129,6 +129,13 @@ export const deleteCategory = async (id: number) => {
   return response.data;
 };
 
+export const updateThemeForCurrentUser = async (themeId: number, userId: number) => {
+  const response = await apiClient.post(`/user/${userId}/theme`, {
+    themeId,
+  });
+  return response.data;
+};
+
 apiClient.interceptors.request.use((config) => {
   const currentToken = getToken();
   if (currentToken) {

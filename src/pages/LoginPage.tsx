@@ -53,6 +53,9 @@ function LoginPage() {
         // justifyContent: 'flex',
         alignItems: 'center',
         minHeight: '60vh',
+        backgroundColor: 'background.paper',
+        borderRadius: '1rem',
+        justifyContent: 'center',
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>

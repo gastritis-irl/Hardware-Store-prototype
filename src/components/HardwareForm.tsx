@@ -1,6 +1,17 @@
-import React from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { HardwarePart } from '../types/HardwarePart';
+import { useGetCategories } from '../hooks/useCategories';
 
 type HardwareFormProps = {
   partData: HardwarePart;
@@ -12,11 +23,16 @@ type HardwareFormProps = {
 };
 
 function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText, icon }: HardwareFormProps) {
+  const { data: categories } = useGetCategories(1, 14);
+  const [selectedCategory, setSelectedCategory] = useState(partData.categoryName);
+
+  const handleCategoryChange = (event: SelectChangeEvent) => {
+    setSelectedCategory(event.target.value as string);
+    setPartData({ ...partData, categoryName: event.target.value as string });
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPartData({
-      ...partData,
-      [event.target.name]: event.target.value,
-    });
+    setPartData({ ...partData, [event.target.name]: event.target.value });
   };
 
   const newIcon = React.cloneElement(icon, { color: 'inherit', sx: { fontSize: 20 } });
@@ -33,6 +49,8 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         maxWidth: '600px',
         margin: 'auto',
         padding: '1rem',
+        backgroundColor: 'background.paper',
+        borderRadius: '1rem',
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -50,14 +68,22 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         variant="outlined"
         fullWidth
       />
-      <TextField
-        label="Category"
-        name="category"
-        value={partData.categoryName}
-        onChange={handleChange}
-        variant="outlined"
-        fullWidth
-      />
+      <FormControl fullWidth>
+        <InputLabel id="category-label">Category</InputLabel>
+        <Select
+          label="Category"
+          id="category-select"
+          value={selectedCategory}
+          MenuProps={{ disableScrollLock: true }}
+          onChange={handleCategoryChange}
+        >
+          {categories?.categories.map((category) => (
+            <MenuItem key={category.id} value={category.name}>
+              {category.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <TextField
         label="Price($)"
         name="price"

@@ -1,27 +1,44 @@
-import React, { useState } from 'react';
-import { AppBar, Box, Button, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { AppBar, Box, Button, IconButton, Theme, Toolbar, Tooltip, Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { useAuth } from '../hooks/useAuth';
 import CustomButton from '../util/CustomButton';
-import ThemeSwitcher from '../util/ThemeSwitcher';
 import { useFilterSort } from '../hooks/useFilterSort';
 import FilterSortPopover from './FilterSortPopover';
 import UserMenu from './UserMenu';
 import NavigationMenu from './NavigationMenu';
+import ThemeSelector from './ThemeSelector';
+import { customTheme, darkTheme, lightTheme } from '../util/Theme';
 
 type NavbarProps = {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
 };
 
-export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
+export function Navbar({ theme, setTheme }: NavbarProps) {
   const { authState } = useAuthContext();
   const isLoggedIn = new Date(authState.expirationDate) > new Date() && Boolean(authState.token);
   const {
     logoutMutation: { mutate },
   } = useAuth();
+
+  useEffect(() => {
+    switch (authState.themeId) {
+      case 1:
+        setTheme(lightTheme);
+        break;
+      case 2:
+        setTheme(darkTheme);
+        break;
+      case 3:
+        setTheme(customTheme);
+        break;
+      default:
+        setTheme(lightTheme);
+    }
+  }, [authState]);
 
   const { orderBy, direction, handleOrderChange, handleDirectionChange, handleFilter } = useFilterSort();
 
@@ -49,7 +66,6 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
       </Typography>
       <Box
         sx={{
-          // flexGrow: 1,
           position: 'sticky',
           top: '0.2rem',
           zIndex: 1,
@@ -60,8 +76,6 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
           sx={{
             borderRadius: 1,
             position: 'sticky',
-            // top: 0,
-            // zIndex: 1,
           }}
         >
           <Toolbar sx={{ paddingBottom: '0 2rem' }}>
@@ -83,7 +97,7 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
                     '&:hover': {
                       color: 'secondary.main',
                       transform: 'scale(1.2)',
-                      transition: 'transform 0.3s ease-in-out', // Smooth transition
+                      transition: 'transform 0.3s ease-in-out',
                     },
                   }}
                 >
@@ -119,8 +133,12 @@ export function Navbar({ darkMode, toggleDarkMode }: NavbarProps) {
                 </Button>
               </>
             )}
-            <Box sx={{ ml: 2 }}>
-              <ThemeSwitcher darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <Box
+              sx={{
+                display: 'flex',
+              }}
+            >
+              <ThemeSelector theme={theme} setTheme={setTheme} />
             </Box>
           </Toolbar>
         </AppBar>

@@ -6,8 +6,10 @@ import { HardwarePart } from '../types/HardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
 import { useAuthContext } from '../context/AuthContext';
 import HardwareForm from '../components/HardwareForm';
+import { useAuthenticatedGuard } from '../hooks/useAuthenticatedGuard';
 
 function HardwareCreatePage() {
+  useAuthenticatedGuard();
   const [partData, setPartData] = useState<HardwarePart>({
     id: 0,
     createdAt: '',

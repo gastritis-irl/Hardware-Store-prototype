@@ -37,7 +37,9 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.21.0",
-    "vite": "^5.0.2"
+    "vite": "^5.0.2",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1"
   },
   "scripts": {
     "dev": "vite",
