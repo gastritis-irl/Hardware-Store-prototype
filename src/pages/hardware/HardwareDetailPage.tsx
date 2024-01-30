@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import ClownIcon from '@mui/icons-material/EmojiEmotions';
-
 import { useHardwarePart } from '../../hooks/hardware/useHardwarePart';
 import { useDeleteHardwarePart } from '../../hooks/hardware/useDeleteHardwarePart';
 import { useSnackbar } from '../../context/SnackbarContext';
