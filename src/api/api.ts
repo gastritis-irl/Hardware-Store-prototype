@@ -51,7 +51,14 @@ export const deleteHardwarePart = (id: number) => apiClient.delete(`/hardware/${
 export const fetchUsers = () => apiClient.get('/user');
 export const fetchUser = (id: number) => apiClient.get(`/user/${id}`);
 export const createUser = (data: User) => apiClient.post('/user', data);
-export const updateUser = (id: number, data: User) => apiClient.put(`/user/${id}`, data);
+export const updateUser = async (id: number, data: User) => {
+  const response = await apiClient.put(`/user/${id}`, data);
+  if (response.data.token) {
+    setToken(response.data.token);
+  }
+  return response;
+};
+
 export const deleteUser = (id: number) => apiClient.delete(`/user/${id}`);
 const authenticateUser = async (endpoint: string, email: string, password: string): Promise<AuthEntity | null> => {
   const response = await apiClient.post(endpoint, {

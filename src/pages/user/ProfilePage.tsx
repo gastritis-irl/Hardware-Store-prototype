@@ -42,6 +42,7 @@ function ProfilePage() {
   };
 
   const isAdmin = authState.role === 'ADMIN';
+  const isOwner = authState.id === id;
 
   const { orderBy, direction, minPrice, maxPrice, textSearch } = useFilterSort();
 
@@ -115,6 +116,7 @@ function ProfilePage() {
                 <Button
                   variant="contained"
                   color="primary"
+                  disabled={!isOwner}
                   onClick={() => {
                     navigate(`/user/${userData.id}`);
                   }}
