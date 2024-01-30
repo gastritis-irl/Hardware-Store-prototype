@@ -73,7 +73,7 @@ function HardwareDetailPage() {
             <CardActions>
               <Button size="small" color="primary" onClick={() => navigate(`/profile/${partData.userId}`)}>
                 <ClownIcon color="inherit" />
-                View owner's profile
+                View owner&apos;s profile
               </Button>
             </CardActions>
           </Box>
