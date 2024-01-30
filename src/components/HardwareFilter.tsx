@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 import { useQueryClient } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useGetCategories } from '../hooks/useCategories';
+import { useGetCategories } from '../hooks/category/useCategories';
 
 type HardwareFilterProps = {
   onFilter: (minPrice: number, maxPrice: number, textSearch: string, category: string) => void;

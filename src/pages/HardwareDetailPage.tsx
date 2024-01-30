@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { useHardwarePart } from '../hooks/useHardwarePart';
-import { useDeleteHardwarePart } from '../hooks/useDeleteHardwarePart';
+import { useHardwarePart } from '../hooks/hardware/useHardwarePart';
+import { useDeleteHardwarePart } from '../hooks/hardware/useDeleteHardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
 import CustomButton from '../util/CustomButton';
 import { useAuthContext } from '../context/AuthContext';

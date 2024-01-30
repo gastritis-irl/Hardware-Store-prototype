@@ -3,7 +3,7 @@ import { AppBar, Box, Button, IconButton, Theme, Toolbar, Tooltip, Typography } 
 import HomeIcon from '@mui/icons-material/Home';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/user/useAuth';
 import CustomButton from '../util/CustomButton';
 import { useFilterSort } from '../hooks/useFilterSort';
 import FilterSortPopover from './FilterSortPopover';
@@ -50,7 +50,7 @@ export function Navbar({ theme, setTheme }: NavbarProps) {
     setFilterPopoverAnchorEl(null);
   };
   const filterOpen = Boolean(filterPopoverAnchorEl);
-  const isProfilePage = window.location.pathname === '/profile';
+  const isProfilePage = window.location.pathname.startsWith('/profile');
 
   const navigate = useNavigate();
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ListItemIcon, MenuItem, Select, SelectChangeEvent, Theme, Typography } from '@mui/material';
+import { ListItemIcon, MenuItem, Select, SelectChangeEvent, Theme, Tooltip, Typography } from '@mui/material';
 import ClownIcon from '@mui/icons-material/EmojiEmotions';
 
 import NightsStayIcon from '@mui/icons-material/NightsStay';
@@ -7,7 +7,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import PaletteIcon from '@mui/icons-material/Palette';
 import { customTheme, darkTheme, lightTheme } from '../util/Theme';
 import { useAuthContext } from '../context/AuthContext';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/user/useAuth';
 
 type ThemeSelectorProps = {
   theme: Theme;
@@ -66,70 +66,99 @@ function ThemeSelector({ theme, setTheme }: ThemeSelectorProps) {
   };
 
   return (
-    <Select
-      value={getThemeName()}
-      onChange={handleChange}
-      IconComponent={PaletteIcon}
-      MenuProps={{ disableScrollLock: true }}
-      variant="standard"
-      sx={{
-        '& .MuiSelect-root': {
-          color: theme.palette.primary.main,
-          transition: 'ease-out 0.8s',
-        },
-        '& .MuiSelect-icon': {
-          color: theme.palette.primary.main,
-          transition: 'ease-out 0.8s',
-        },
-        '& .MuiSelect-select': {
-          color: theme.palette.primary.main,
-          transition: 'ease-out 0.8s',
-        },
-        width: '150px',
-        borderRadius: '1rem',
-        marginY: '0.2rem',
-      }}
-    >
-      <MenuItem value="light">
-        <ListItemIcon sx={{ minWidth: 'auto', marginRight: '8px' }}>
-          <WbSunnyIcon
-            fontSize="small"
-            sx={{
-              color: 'orange',
-            }}
-          />
-        </ListItemIcon>
-        <Typography variant="inherit" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
-          Light Theme
-        </Typography>
-      </MenuItem>
-      <MenuItem value="dark">
-        <ListItemIcon sx={{ minWidth: 'auto', marginRight: '8px' }}>
-          <NightsStayIcon
-            fontSize="small"
-            sx={{
-              color: getThemeName() === 'light' ? 'grey' : 'white',
-            }}
-          />
-        </ListItemIcon>
-        <Typography variant="inherit" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
-          Dark Theme
-        </Typography>
-      </MenuItem>
-      <MenuItem value="custom">
-        <ListItemIcon sx={{ minWidth: 'auto', marginRight: '8px' }}>
-          <ClownIcon
-            fontSize="small"
-            sx={{
-              color: 'pink',
-            }}
-          />
-        </ListItemIcon>
-        <Typography variant="inherit" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
-          Joker Theme
-        </Typography>
-      </MenuItem>
-    </Select>
+    <Tooltip title="Change the theme to your preference" placement="top">
+      <Select
+        onChange={handleChange}
+        IconComponent={PaletteIcon}
+        MenuProps={{ disableScrollLock: true }}
+        variant="standard"
+        disableUnderline
+        defaultValue="light"
+        renderValue={() => undefined}
+        sx={{
+          '& .MuiSelect-root': {
+            color: theme.palette.primary.main,
+            transition: 'ease-out 0.8s',
+          },
+          '& .MuiSelect-icon': {
+            color: theme.palette.primary.main,
+            transition: 'ease-out 0.8s',
+          },
+          '& .MuiSelect-select': {
+            color: theme.palette.primary.main,
+            transition: 'ease-out 0.8s',
+          },
+          '& .MuiSelect-select:focus': {
+            backgroundColor: 'transparent',
+          },
+          '&:hover': {
+            color: 'secondary.main',
+            transform: 'scale(1.2)',
+            transition: 'transform 0.3s ease-in-out',
+          },
+          flexDirection: 'row',
+          borderRadius: '1rem',
+          marginY: '0.2rem',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <MenuItem
+          value="light"
+          sx={{
+            flexDirection: 'row',
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: 'auto' }}>
+            <WbSunnyIcon
+              fontSize="small"
+              sx={{
+                color: 'orange',
+              }}
+            />
+          </ListItemIcon>
+          <Typography variant="inherit" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
+            Light Theme
+          </Typography>
+        </MenuItem>
+        <MenuItem
+          value="dark"
+          sx={{
+            flexDirection: 'row',
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: 'auto' }}>
+            <NightsStayIcon
+              fontSize="small"
+              sx={{
+                color: getThemeName() === 'light' ? 'grey' : 'white',
+              }}
+            />
+          </ListItemIcon>
+          <Typography variant="inherit" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
+            Dark Theme
+          </Typography>
+        </MenuItem>
+        <MenuItem
+          value="custom"
+          sx={{
+            flexDirection: 'row',
+          }}
+        >
+          <ListItemIcon sx={{ minWidth: 'auto' }}>
+            <ClownIcon
+              fontSize="small"
+              sx={{
+                color: 'pink',
+              }}
+            />
+          </ListItemIcon>
+          <Typography variant="inherit" color="inherit" sx={{ display: 'flex', alignItems: 'center' }}>
+            Joker Theme
+          </Typography>
+        </MenuItem>
+      </Select>
+    </Tooltip>
   );
 }
 

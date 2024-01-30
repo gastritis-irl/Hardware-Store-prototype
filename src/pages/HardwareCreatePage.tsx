@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AddCircle } from '@mui/icons-material';
-import { useCreateHardwarePart } from '../hooks/useCreateHardwarePart';
+import { useCreateHardwarePart } from '../hooks/hardware/useCreateHardwarePart';
 import { HardwarePart } from '../types/HardwarePart';
 import { useSnackbar } from '../context/SnackbarContext';
 import { useAuthContext } from '../context/AuthContext';
 import HardwareForm from '../components/HardwareForm';
-import { useAuthenticatedGuard } from '../hooks/useAuthenticatedGuard';
+import { useAuthenticatedGuard } from '../hooks/guard/useAuthenticatedGuard';
 
 function HardwareCreatePage() {
   useAuthenticatedGuard();

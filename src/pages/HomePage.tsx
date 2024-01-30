@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Container, Grid, Pagination, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { useGetCategories } from '../hooks/useCategories';
+import { useGetCategories } from '../hooks/category/useCategories';
 import CategoryCard from '../components/CategoryCard';
 import CustomButton from '../util/CustomButton';
 

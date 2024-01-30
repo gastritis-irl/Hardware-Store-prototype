@@ -1,15 +1,17 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteHardwarePart } from '../api/api';
+import { createHardwarePart } from '../../api/api';
+import { HardwarePart } from '../../types/HardwarePart';
 
-export const useDeleteHardwarePart = () => {
+export const useCreateHardwarePart = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<void, Error, number>({
-    mutationFn: (id) =>
-      deleteHardwarePart(id).then((response) => {
-        if (response.status !== 200 && response.status !== 204) {
+  return useMutation<HardwarePart, Error, HardwarePart>({
+    mutationFn: (newPart) =>
+      createHardwarePart(newPart).then((response) => {
+        if (response.status !== 200) {
           throw new Error('API mutation error');
         }
+        return response.data;
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({

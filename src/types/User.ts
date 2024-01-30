@@ -4,5 +4,5 @@ export type User = {
   updatedAt: string;
   email: string;
   role: string;
-  token: string;
+  token?: string;
 };

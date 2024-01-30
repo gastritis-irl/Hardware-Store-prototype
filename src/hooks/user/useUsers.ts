@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchUser, fetchUsers, getHardwarePartsByUser } from '../api/api';
-import { User } from '../types/User';
-import { HardwarePart } from '../types/HardwarePart';
+import { fetchUser, fetchUsers, getHardwarePartsByUser } from '../../api/api';
+import { User } from '../../types/User';
+import { HardwarePart } from '../../types/HardwarePart';
 
 export const useFetchUsers = () => {
   return useQuery<User[], Error>({
@@ -37,9 +37,6 @@ export const useHardwarePartsByUser = (userId: number) => {
     queryKey: ['user', userId, 'hardwareParts'],
     queryFn: () =>
       getHardwarePartsByUser(userId).then((response) => {
-        // console.log('response: ', response);
-        // console.log('data: ', response.data);
-        // console.log('response again: ', response);
         return response;
       }),
   });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Pagination, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import { useHardwareParts } from '../hooks/useHardwareParts';
+import { useHardwareParts } from '../hooks/hardware/useHardwareParts';
 import { HardwarePart } from '../types/HardwarePart';
 
 type HardwarePartsGridProps = {

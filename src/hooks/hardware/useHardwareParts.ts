@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHardwareParts } from '../api/api';
-import { HardwarePart } from '../types/HardwarePart';
+import { fetchHardwareParts } from '../../api/api';
+import { HardwarePart } from '../../types/HardwarePart';
 
 export const useHardwareParts = (
   orderBy?: string,

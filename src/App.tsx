@@ -19,6 +19,7 @@ import Footer from './components/Footer';
 import AdminOnlyGuardPage from './pages/guardPages/AdminOnlyGuardPage';
 import AdminOrOwnerGuardPage from './pages/guardPages/AdminOrOwnerGuardPage';
 import AuthenticatedUserGuardPage from './pages/guardPages/AuthenticatedUserGuardPage';
+import UserEditPage from './pages/UserEditPage';
 
 function App() {
   const [theme, setTheme] = useState(lightTheme);
@@ -48,7 +49,8 @@ function App() {
                     <Route path="/detail/:id" element={<HardwareDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/profile/:id" element={<ProfilePage />} />
+                    <Route path="/user/:id" element={<UserEditPage />} />
                     <Route path="/adminonly" element={<AdminOnlyGuardPage />} />
                     <Route path="/adminorowner" element={<AdminOrOwnerGuardPage />} />
                     <Route path="/authenticatedonly" element={<AuthenticatedUserGuardPage />} />

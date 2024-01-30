@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
-export const useAdminOnlyGuard = () => {
+export const useAuthenticatedGuard = () => {
   const { authState } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authState.role !== 'admin') {
-      navigate('/adminonly');
+    if (authState.id !== -1) {
+      navigate('/authenticatedonly');
     }
   }, [authState]);
 };

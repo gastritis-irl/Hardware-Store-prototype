@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@mui/material';
 import { HardwarePart } from '../types/HardwarePart';
-import { useGetCategories } from '../hooks/useCategories';
+import { useGetCategories } from '../hooks/category/useCategories';
 
 type HardwareFormProps = {
   partData: HardwarePart;

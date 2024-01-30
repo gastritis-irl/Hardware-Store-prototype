@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { login, logout, register, updateThemeForCurrentUser } from '../api/api';
-import { useAuthContext } from '../context/AuthContext';
-import { AuthEntity } from '../types/AuthEntity';
-import { setToken } from '../api/token';
+import { login, logout, register, updateThemeForCurrentUser } from '../../api/api';
+import { useAuthContext } from '../../context/AuthContext';
+import { AuthEntity } from '../../types/AuthEntity';
+import { setToken } from '../../api/token';
 
 type UserCredentials = {
   email: string;

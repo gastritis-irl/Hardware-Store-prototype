@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateHardwarePart } from '../api/api';
-import { HardwarePart } from '../types/HardwarePart';
+import { updateHardwarePart } from '../../api/api';
+import { HardwarePart } from '../../types/HardwarePart';
 
 export const useUpdateHardwarePart = () => {
   const queryClient = useQueryClient();

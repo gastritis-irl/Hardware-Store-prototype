@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { AddCircle } from '@mui/icons-material';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/user/useAuth';
 import { useSnackbar } from '../context/SnackbarContext';
 
 function RegisterPage() {
@@ -75,8 +75,15 @@ function RegisterPage() {
         onChange={(e) => setEmail(e.target.value)}
         variant="outlined"
         fullWidth
-        sx={{
-          color: 'secondary',
+        InputProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
+        InputLabelProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
         }}
       />
       <TextField
@@ -86,7 +93,16 @@ function RegisterPage() {
         onChange={(e) => setPassword(e.target.value)}
         variant="outlined"
         fullWidth
-        color="secondary"
+        InputProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
+        InputLabelProps={{
+          style: {
+            color: email && password ? 'primary' : 'error',
+          },
+        }}
       />
       <Button type="submit" variant="contained" color="primary" size="large">
         <AddCircle sx={{ marginRight: '0.5rem' }} />

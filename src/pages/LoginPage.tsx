@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/user/useAuth';
 import { useSnackbar } from '../context/SnackbarContext';
 
 function LoginPage() {

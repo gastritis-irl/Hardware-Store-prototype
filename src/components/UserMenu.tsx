@@ -49,7 +49,7 @@ function UserMenu({ handleLogout }: UserMenuProps) {
             <Typography variant="h5" component="div" align="center" color="text.secondary">
               {authState.email}
             </Typography>
-            <RouterLink to="/profile">
+            <RouterLink to={`/profile/${authState.id}`}>
               <Button color="primary" fullWidth onClick={handlePopoverClose}>
                 Visit Profile
               </Button>
