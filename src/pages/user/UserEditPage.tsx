@@ -53,11 +53,19 @@ function UserEditPage() {
         borderRadius: '1rem',
         justifyContent: 'center',
         height: '30vh',
+        width: '400px',
+        margin: 'auto',
+        '@media (max-width: 600px)': {
+          width: '90vw',
+        },
       }}
     >
-      <Typography variant="h6" gutterBottom color="primary">
-        Edit your profile
-      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+        <Transform color="primary" />
+        <Typography variant="h6" gutterBottom color="primary">
+          Edit your profile
+        </Typography>
+      </Box>
       <TextField
         required
         id="email"
@@ -68,8 +76,8 @@ function UserEditPage() {
         onChange={handleChange}
       />
       <Button type="submit" variant="contained" color="primary" sx={{ mt: 3, mb: 2 }}>
-        <Transform color="primary" />
-        <Typography variant="h6" gutterBottom color="primary">
+        <Transform color="inherit" />
+        <Typography variant="h6" gutterBottom color="inherit">
           Update
         </Typography>
       </Button>

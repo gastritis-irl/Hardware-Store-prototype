@@ -52,7 +52,7 @@ function RegisterPage() {
         display: 'flex',
         flexDirection: 'column',
         gap: '1rem',
-        minWidth: '600px',
+        minWidth: '400px',
         margin: 'auto',
         padding: '1rem',
         alignItems: 'center',

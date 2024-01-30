@@ -38,6 +38,7 @@ function FilterSort({
           maxWidth: '100%',
           position: 'relative',
           marginBottom: '1rem',
+          maxHeight: '500px',
         },
       }}
     >
@@ -53,7 +54,6 @@ function FilterSort({
           },
         }}
       >
-        {/* Order By Select */}
         <FormControl
           variant="outlined"
           sx={{
@@ -70,8 +70,6 @@ function FilterSort({
             <MenuItem value="price">Price</MenuItem>
           </Select>
         </FormControl>
-
-        {/* Direction Select */}
         <FormControl
           variant="outlined"
           sx={{

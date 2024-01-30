@@ -7,7 +7,7 @@ export const useAuthenticatedGuard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (authState.id !== -1) {
+    if (authState.id === -1) {
       navigate('/authenticatedonly');
     }
   }, [authState]);

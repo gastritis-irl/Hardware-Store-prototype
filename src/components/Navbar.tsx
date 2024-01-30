@@ -68,7 +68,7 @@ export function Navbar({ theme, setTheme }: NavbarProps) {
         sx={{
           position: 'sticky',
           top: '0.2rem',
-          zIndex: 1,
+          zIndex: 10,
         }}
       >
         <AppBar

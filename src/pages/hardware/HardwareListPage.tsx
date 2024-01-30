@@ -26,6 +26,10 @@ function HardwareListPage() {
         alignItems: 'flex-start',
         justifyContent: 'space-between',
         gap: '1rem',
+        '@media (max-width: 600px)': {
+          flexDirection: 'column',
+          gap: '5rem',
+        },
       }}
     >
       <FilterSort
