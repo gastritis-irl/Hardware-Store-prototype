@@ -3,12 +3,12 @@ import { Avatar, Box, Button, Card, CardContent, Container, Grid, Typography } f
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Delete, Transform } from '@mui/icons-material';
-import { useAuthContext } from '../context/AuthContext';
-import { useFilterSort } from '../hooks/useFilterSort';
-import HardwarePartsGrid from '../components/HardwarePartsGrid';
-import { useFetchUser } from '../hooks/user/useUsers';
-import { User } from '../types/User';
-import { useDeleteUser } from '../hooks/user/useDeleteUser';
+import { useAuthContext } from '../../context/AuthContext';
+import { useFilterSort } from '../../hooks/useFilterSort';
+import HardwarePartsGrid from '../../components/HardwarePartsGrid';
+import { useFetchUser } from '../../hooks/user/useUsers';
+import { User } from '../../types/User';
+import { useDeleteUser } from '../../hooks/user/useDeleteUser';
 
 function ProfilePage() {
   const idString = useParams().id as string;

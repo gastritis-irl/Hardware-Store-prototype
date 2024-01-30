@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { Transform } from '@mui/icons-material';
-import { useFetchUser } from '../hooks/user/useUsers';
-import { useUpdateUser } from '../hooks/user/useUpdateUser';
-import { User } from '../types/User';
-import { useAdminOrOwnerGuard } from '../hooks/guard/useAdminOrOwnerGuard';
+import { useFetchUser } from '../../hooks/user/useUsers';
+import { useUpdateUser } from '../../hooks/user/useUpdateUser';
+import { User } from '../../types/User';
+import { useAdminOrOwnerGuard } from '../../hooks/guard/useAdminOrOwnerGuard';
 
 function UserEditPage() {
   const idString = useParams().id as string;

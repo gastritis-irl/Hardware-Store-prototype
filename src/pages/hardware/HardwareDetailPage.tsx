@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { useHardwarePart } from '../hooks/hardware/useHardwarePart';
-import { useDeleteHardwarePart } from '../hooks/hardware/useDeleteHardwarePart';
-import { useSnackbar } from '../context/SnackbarContext';
-import CustomButton from '../util/CustomButton';
-import { useAuthContext } from '../context/AuthContext';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { useHardwarePart } from '../../hooks/hardware/useHardwarePart';
+import { useDeleteHardwarePart } from '../../hooks/hardware/useDeleteHardwarePart';
+import { useSnackbar } from '../../context/SnackbarContext';
+import CustomButton from '../../util/CustomButton';
+import { useAuthContext } from '../../context/AuthContext';
+import ClownIcon from '@mui/icons-material/EmojiEmotions';
 
 function HardwareDetailPage() {
   const { id } = useParams();
@@ -56,18 +57,26 @@ function HardwareDetailPage() {
             <Typography variant="h6">Manufacturer: {partData.manufacturer}</Typography>
             <Typography variant="h6">Category: {partData.categoryName}</Typography>
           </CardContent>
-          <CardActions>
-            {(authState.role === 'ADMIN' || authState.id === partData.userId) && (
-              <>
-                <CustomButton size="small" color="primary" onClick={() => navigate(`/edit/${partData.id}`)}>
-                  Edit
-                </CustomButton>
-                <Button size="small" color="error" onClick={handleDelete}>
-                  Delete
-                </Button>
-              </>
-            )}
-          </CardActions>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <CardActions>
+              {(authState.role === 'ADMIN' || authState.id === partData.userId) && (
+                <>
+                  <CustomButton size="small" color="primary" onClick={() => navigate(`/edit/${partData.id}`)}>
+                    Edit
+                  </CustomButton>
+                  <Button size="small" color="error" onClick={handleDelete}>
+                    Delete
+                  </Button>
+                </>
+              )}
+            </CardActions>
+            <CardActions>
+              <Button size="small" color="primary" onClick={() => navigate(`/profile/${partData.userId}`)}>
+                <ClownIcon color="inherit" />
+                View owner's profile
+              </Button>
+            </CardActions>
+          </Box>
         </Card>
       </Grid>
     </Grid>

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { useAuth } from '../hooks/user/useAuth';
-import { useSnackbar } from '../context/SnackbarContext';
+import { AddCircle } from '@mui/icons-material';
+import { useAuth } from '../../hooks/user/useAuth';
+import { useSnackbar } from '../../context/SnackbarContext';
 
-function LoginPage() {
+function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const snackbar = useSnackbar();
   const {
-    loginMutation: { mutate },
+    registerMutation: { mutate },
   } = useAuth();
   const navigate = useNavigate();
-  const snackbar = useSnackbar();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,16 +22,21 @@ function LoginPage() {
         onSuccess: () => {
           navigate('/');
           if (snackbar) {
-            snackbar.openSnackbar('User logged in successfully!', 'success');
+            snackbar.openSnackbar('User registered successfully!', 'success');
           }
         },
-        onError: (error) => {
+        onError: (error: Error) => {
           if (snackbar) {
             snackbar.openSnackbar(error.message, 'error');
           }
         },
       },
     );
+
+    if (!snackbar) {
+      return;
+    }
+    snackbar.openSnackbar('User created successfully!', 'success');
   };
 
   return (
@@ -50,7 +55,6 @@ function LoginPage() {
         minWidth: '600px',
         margin: 'auto',
         padding: '1rem',
-        // justifyContent: 'flex',
         alignItems: 'center',
         minHeight: '60vh',
         backgroundColor: 'background.paper',
@@ -59,9 +63,9 @@ function LoginPage() {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <LockOpenIcon color="primary" sx={{ fontSize: 40 }} />
+        <AddCircle color="primary" sx={{ fontSize: 40 }} />
         <Typography variant="h4" align="center" color="primary">
-          Login
+          Register
         </Typography>
       </Box>
       <TextField
@@ -100,17 +104,12 @@ function LoginPage() {
           },
         }}
       />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        sx={{ maxWidth: '50% ', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
-      >
-        <LockOpenIcon color="inherit" sx={{ fontSize: 20 }} />
-        Login
+      <Button type="submit" variant="contained" color="primary" size="large">
+        <AddCircle sx={{ marginRight: '0.5rem' }} />
+        Register
       </Button>
     </Box>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

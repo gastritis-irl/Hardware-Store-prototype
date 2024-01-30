@@ -50,17 +50,7 @@ function HardwarePartsGrid({
   return (
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <Grid
-          container
-          spacing={2}
-          sx={
-            {
-              // flexWrap: 'wrap',
-              // marginLeft: 'auto',
-              // justifyContent: 'flex-start',
-            }
-          }
-        >
+        <Grid container spacing={2}>
           {data.hardwareParts.map((part: HardwarePart) => (
             <Grid
               item

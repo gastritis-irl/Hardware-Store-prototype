@@ -21,6 +21,9 @@ export const useDeleteUser = () => {
       queryClient.invalidateQueries({
         queryKey: ['user', idHolder],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['hardwareParts'],
+      });
       setToken('');
     },
     onError: (error) => {

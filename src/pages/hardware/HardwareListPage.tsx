@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import HardwarePartsGrid from '../components/HardwarePartsGrid';
-import FilterSort from '../components/FilterSort';
-import { useFilterSort } from '../hooks/useFilterSort';
+import HardwarePartsGrid from '../../components/HardwarePartsGrid';
+import FilterSort from '../../components/FilterSort';
+import { useFilterSort } from '../../hooks/useFilterSort';
 
 function HardwareListPage() {
   const {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Transform } from '@mui/icons-material';
-import { useHardwarePart } from '../hooks/hardware/useHardwarePart';
-import { useUpdateHardwarePart } from '../hooks/hardware/useUpdateHardwarePart';
-import { HardwarePart } from '../types/HardwarePart';
-import HardwareForm from '../components/HardwareForm';
-import { useSnackbar } from '../context/SnackbarContext';
-import { useAdminOrOwnerGuard } from '../hooks/guard/useAdminOrOwnerGuard';
+import { useHardwarePart } from '../../hooks/hardware/useHardwarePart';
+import { useUpdateHardwarePart } from '../../hooks/hardware/useUpdateHardwarePart';
+import { HardwarePart } from '../../types/HardwarePart';
+import HardwareForm from '../../components/HardwareForm';
+import { useSnackbar } from '../../context/SnackbarContext';
+import { useAdminOrOwnerGuard } from '../../hooks/guard/useAdminOrOwnerGuard';
 
 function HardwareEditPage() {
   const { id } = useParams();
@@ -52,7 +52,7 @@ function HardwareEditPage() {
         }) => {
           navigate(`/detail/${data.id}`);
           if (snackbar) {
-            snackbar.openSnackbar('Hardware part updated successfully!', 'success');
+            snackbar.openSnackbar('hardware part updated successfully!', 'success');
           }
         },
         onError: (error: Error) => {
