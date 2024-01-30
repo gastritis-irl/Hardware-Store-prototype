@@ -66,7 +66,7 @@ function ThemeSelector({ theme, setTheme }: ThemeSelectorProps) {
   };
 
   return (
-    <Tooltip title="Change the theme to your preference" arrow placement="top">
+    <Tooltip title="Color theme" arrow placement="top">
       <Select
         onChange={handleChange}
         IconComponent={PaletteIcon}
