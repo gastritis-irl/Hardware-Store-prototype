@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchUser, fetchUsers } from '../api/api';
-import { User } from '../types/User';
+import { fetchUser, fetchUsers, getHardwarePartsByUser } from '../../api/api';
+import { User } from '../../types/User';
+import { HardwarePart } from '../../types/HardwarePart';
 
 export const useFetchUsers = () => {
   return useQuery<User[], Error>({
@@ -24,6 +25,19 @@ export const useFetchUser = (id: number) => {
           throw new Error('API fetch error');
         }
         return response.data;
+      }),
+  });
+};
+
+export const useHardwarePartsByUser = (userId: number) => {
+  if (userId === -1) {
+    return { isLoading: false, isError: false, data: [] };
+  }
+  return useQuery<User, Error, HardwarePart[]>({
+    queryKey: ['user', userId, 'hardwareParts'],
+    queryFn: () =>
+      getHardwarePartsByUser(userId).then((response) => {
+        return response;
       }),
   });
 };

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHardwarePart } from '../api/api';
-import { HardwarePart } from '../types/HardwarePart';
+import { fetchHardwarePart } from '../../api/api';
+import { HardwarePart } from '../../types/HardwarePart';
 
 export const useHardwarePart = (id: number) => {
   return useQuery<HardwarePart, Error>({
