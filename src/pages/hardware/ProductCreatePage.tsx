@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AddCircle } from '@mui/icons-material';
-import { useCreateHardwarePart } from '../../hooks/hardware/useCreateHardwarePart';
-import { HardwarePart } from '../../types/HardwarePart';
+import { useCreateProduct } from '../../hooks/product/useCreateProduct';
+import { Product } from '../../types/Product';
 import { useSnackbar } from '../../context/SnackbarContext';
 import { useAuthContext } from '../../context/AuthContext';
-import HardwareForm from '../../components/HardwareForm';
+import ProductForm from '../../components/ProductForm';
 import { useAuthenticatedGuard } from '../../hooks/guard/useAuthenticatedGuard';
 
-function HardwareCreatePage() {
+function ProductCreatePage() {
   useAuthenticatedGuard();
-  const [partData, setPartData] = useState<HardwarePart>({
+  const [partData, setPartData] = useState<Product>({
     id: 0,
     createdAt: '',
     updatedAt: '',
@@ -25,16 +25,16 @@ function HardwareCreatePage() {
 
   const snackbar = useSnackbar();
   const navigate = useNavigate();
-  const createPartMutation = useCreateHardwarePart();
+  const createPartMutation = useCreateProduct();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     partData.userId = authState.id;
     createPartMutation.mutate(partData, {
-      onSuccess: (data: HardwarePart) => {
+      onSuccess: (data: Product) => {
         navigate(`/detail/${data.id}`);
         if (snackbar) {
-          snackbar.openSnackbar('hardware part created successfully!', 'success');
+          snackbar.openSnackbar('product part created successfully!', 'success');
         }
       },
       onError: (error: Error) => {
@@ -47,7 +47,7 @@ function HardwareCreatePage() {
 
   return (
     <>
-      <HardwareForm
+      <ProductForm
         partData={partData}
         setPartData={setPartData}
         handleSubmit={handleSubmit}
@@ -59,4 +59,4 @@ function HardwareCreatePage() {
   );
 }
 
-export default HardwareCreatePage;
+export default ProductCreatePage;

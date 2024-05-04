@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteHardwarePart } from '../../api/api';
+import { deleteProduct } from '../../api/api';
 
-export const useDeleteHardwarePart = () => {
+export const useDeleteProduct = () => {
   const queryClient = useQueryClient();
 
   let idHolder: number;
   return useMutation<void, Error, number>({
     mutationFn: (id) =>
-      deleteHardwarePart(id).then((response) => {
+      deleteProduct(id).then((response) => {
         idHolder = id;
         if (response.status !== 200 && response.status !== 204) {
           throw new Error('API mutation error');

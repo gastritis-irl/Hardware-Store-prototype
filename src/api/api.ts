@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { HardwarePart } from '../types/HardwarePart';
+import { Product } from '../types/Product';
 import { User } from '../types/User';
 import { AuthEntity } from '../types/AuthEntity';
 import { getToken, setToken } from './token';
@@ -17,7 +17,7 @@ export const randomImage = () =>
     },
   });
 
-export const fetchHardwareParts = (
+export const fetchProducts = (
   orderBy?: string,
   direction?: string,
   pageNumber?: number,
@@ -27,7 +27,7 @@ export const fetchHardwareParts = (
   userId?: number,
   categoryName?: string,
 ) => {
-  let url = '/hardware';
+  let url = '/product';
   const params = new URLSearchParams();
 
   if (orderBy) params.append('orderBy', orderBy);
@@ -44,10 +44,10 @@ export const fetchHardwareParts = (
   return apiClient.get(url);
 };
 
-export const fetchHardwarePart = (id: number) => apiClient.get(`/hardware/${id}`);
-export const createHardwarePart = (data: HardwarePart) => apiClient.post('/hardware', data);
-export const updateHardwarePart = (id: number, data: HardwarePart) => apiClient.put(`/hardware/${id}`, data);
-export const deleteHardwarePart = (id: number) => apiClient.delete(`/hardware/${id}`);
+export const fetchProduct = (id: number) => apiClient.get(`/product/${id}`);
+export const createProduct = (data: Product) => apiClient.post('/product', data);
+export const updateProduct = (id: number, data: Product) => apiClient.put(`/product/${id}`, data);
+export const deleteProduct = (id: number) => apiClient.delete(`/product/${id}`);
 export const fetchUsers = () => apiClient.get('/user');
 export const fetchUser = (id: number) => apiClient.get(`/user/${id}`);
 export const createUser = (data: User) => apiClient.post('/user', data);
@@ -95,8 +95,8 @@ export const refreshToken = async () => {
   return response.data;
 };
 
-export const getHardwarePartsByUser = async (userId: number) => {
-  const response = await apiClient.get(`/user/${userId}/hardware`);
+export const getProductsByUser = async (userId: number) => {
+  const response = await apiClient.get(`/user/${userId}/product`);
   return response.data;
 };
 
@@ -155,7 +155,7 @@ apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 403 && !originalRequest.retry) {
+    if ((error.response.status === 403 || error.response.status === 404) && !originalRequest.retry) {
       originalRequest.retry = true;
       const newToken = await refreshToken();
       if (newToken) {

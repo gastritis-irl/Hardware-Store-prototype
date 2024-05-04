@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Delete, Transform } from '@mui/icons-material';
 import { useAuthContext } from '../../context/AuthContext';
 import { useFilterSort } from '../../hooks/useFilterSort';
-import HardwarePartsGrid from '../../components/HardwarePartsGrid';
+import ProductsGrid from '../../components/ProductsGrid';
 import { useFetchUser } from '../../hooks/user/useUsers';
 import { User } from '../../types/User';
 import { useDeleteUser } from '../../hooks/user/useDeleteUser';
@@ -165,7 +165,7 @@ function ProfilePage() {
             </CardContent>
           </Card>
         </Grid>
-        <HardwarePartsGrid
+        <ProductsGrid
           userId={authState.id}
           minPrice={minPrice}
           maxPrice={maxPrice}

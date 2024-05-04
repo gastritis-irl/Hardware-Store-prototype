@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHardwareParts } from '../../api/api';
-import { HardwarePart } from '../../types/HardwarePart';
+import { fetchProducts } from '../../api/api';
+import { Product } from '../../types/Product';
 
-export const useHardwareParts = (
+export const useProducts = (
   orderBy?: string,
   direction?: string,
   pageNumber?: number,
@@ -12,10 +12,10 @@ export const useHardwareParts = (
   userId?: number,
   category?: string,
 ) => {
-  return useQuery<{ hardwareParts: HardwarePart[]; nrOfPages: number; nrOfElements: number }, Error>({
-    queryKey: ['hardwareParts', orderBy, direction, pageNumber, minPrice, maxPrice, textSearch, userId, category],
+  return useQuery<{ products: Product[]; nrOfPages: number; nrOfElements: number }, Error>({
+    queryKey: ['products', orderBy, direction, pageNumber, minPrice, maxPrice, textSearch, userId, category],
     queryFn: () =>
-      fetchHardwareParts(orderBy, direction, pageNumber, minPrice, maxPrice, textSearch, userId, category).then(
+      fetchProducts(orderBy, direction, pageNumber, minPrice, maxPrice, textSearch, userId, category).then(
         (response) => {
           if (response.status !== 200) {
             throw new Error('API fetch error');

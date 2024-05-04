@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateHardwarePart } from '../../api/api';
-import { HardwarePart } from '../../types/HardwarePart';
+import { updateProduct } from '../../api/api';
+import { Product } from '../../types/Product';
 
-export const useUpdateHardwarePart = () => {
+export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<HardwarePart, Error, { id: number; part: HardwarePart }>({
+  return useMutation<Product, Error, { id: number; part: Product }>({
     mutationFn: ({ id, part }) =>
-      updateHardwarePart(id, part).then((response) => {
+      updateProduct(id, part).then((response) => {
         if (response.status !== 200) {
           throw new Error('API mutation error');
         }

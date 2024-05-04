@@ -10,19 +10,19 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { HardwarePart } from '../types/HardwarePart';
+import { Product } from '../types/Product';
 import { useGetCategories } from '../hooks/category/useCategories';
 
 type HardwareFormProps = {
-  partData: HardwarePart;
-  setPartData: (partData: HardwarePart) => void;
+  partData: Product;
+  setPartData: (partData: Product) => void;
   handleSubmit: (event: React.FormEvent) => void;
   formTitle: string;
   submitButtonText: string;
   icon: React.ReactElement;
 };
 
-function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText, icon }: HardwareFormProps) {
+function ProductForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText, icon }: HardwareFormProps) {
   const { data: categories } = useGetCategories(1, 14);
   const [selectedCategory, setSelectedCategory] = useState(partData.categoryName);
 
@@ -115,4 +115,4 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
   );
 }
 
-export default HardwareForm;
+export default ProductForm;

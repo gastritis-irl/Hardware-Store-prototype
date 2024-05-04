@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Pagination, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import { useHardwareParts } from '../hooks/hardware/useHardwareParts';
-import { HardwarePart } from '../types/HardwarePart';
+import { useProducts } from '../hooks/product/useProducts';
+import { Product } from '../types/Product';
 
-type HardwarePartsGridProps = {
+type ProductsGridProps = {
   orderBy?: string;
   direction?: string;
   minPrice?: number;
@@ -14,7 +14,7 @@ type HardwarePartsGridProps = {
   categoryName?: string;
 };
 
-function HardwarePartsGrid({
+function ProductsGrid({
   orderBy = 'id',
   direction = 'asc',
   minPrice = 0,
@@ -22,9 +22,9 @@ function HardwarePartsGrid({
   textSearch = '',
   userId = -1,
   categoryName = '',
-}: HardwarePartsGridProps) {
+}: ProductsGridProps) {
   const [page, setPage] = useState(1);
-  const { data, isLoading, isError } = useHardwareParts(
+  const { data, isLoading, isError } = useProducts(
     orderBy,
     direction,
     page,
@@ -51,7 +51,7 @@ function HardwarePartsGrid({
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <Grid container spacing={2}>
-          {data.hardwareParts.map((part: HardwarePart) => (
+          {data.products.map((part: Product) => (
             <Grid
               item
               xs={12}
@@ -136,4 +136,4 @@ function HardwarePartsGrid({
   );
 }
 
-export default HardwarePartsGrid;
+export default ProductsGrid;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import HardwareFilter from './HardwareFilter';
+import ProductFilter from './ProductFilter';
 
 type FilterSortComponentProps = {
   orderBy: string;
@@ -42,7 +42,7 @@ function FilterSort({
         },
       }}
     >
-      <HardwareFilter onFilter={handleFilter} />
+      <ProductFilter onFilter={handleFilter} />
       <Box
         sx={{
           display: 'flex',
