@@ -59,8 +59,17 @@ function ProductForm({ partData, setPartData, handleSubmit, formTitle, submitBut
           {formTitle}
         </Typography>
       </Box>
-      <TextField label="Name" name="name" value={partData.name} onChange={handleChange} variant="outlined" fullWidth />
       <TextField
+        id="name"
+        label="Name"
+        name="name"
+        value={partData.name}
+        onChange={handleChange}
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        id="manufacturer"
         label="Manufacturer"
         name="manufacturer"
         value={partData.manufacturer}
@@ -85,6 +94,7 @@ function ProductForm({ partData, setPartData, handleSubmit, formTitle, submitBut
         </Select>
       </FormControl>
       <TextField
+        id="price"
         label="Price($)"
         name="price"
         value={partData.price}
@@ -94,6 +104,7 @@ function ProductForm({ partData, setPartData, handleSubmit, formTitle, submitBut
         fullWidth
       />
       <TextField
+        id="description"
         label="Description"
         name="description"
         value={partData.description}
@@ -102,6 +113,7 @@ function ProductForm({ partData, setPartData, handleSubmit, formTitle, submitBut
         fullWidth
       />
       <Button
+        id="submit"
         type="submit"
         variant="contained"
         color="primary"

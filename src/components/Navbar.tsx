@@ -61,13 +61,49 @@ export function Navbar({ theme, setTheme }: NavbarProps) {
 
   return (
     <>
-      <Typography variant="h4" align="left" color="primary">
-        Hardware Store
-      </Typography>
       <Box
         sx={{
+          position: 'relative',
+          zIndex: 10,
+          width: '100%',
+          paddingInline: '24rem',
+          '@media (max-width: 600px)': {
+            paddingInline: '1rem',
+          },
+          // This is necessary to see the blur effect.
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backdropFilter: 'blur(2px)',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+            zIndex: -1,
+            boxShadow: 5,
+          },
+        }}
+      >
+        <Typography
+          variant="h4"
+          align="left"
+          color="primary"
+          sx={{
+            paddingY: '1rem',
+            '@media (max-width: 600px)': {
+              paddingInline: '1rem',
+            },
+          }}
+        >
+          Example Store
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          width: '100%',
           position: 'sticky',
-          top: '0.2rem',
+          top: '0rem',
           zIndex: 10,
         }}
       >
@@ -76,69 +112,88 @@ export function Navbar({ theme, setTheme }: NavbarProps) {
           sx={{
             borderRadius: 1,
             position: 'sticky',
+            boxShadow: 5,
           }}
         >
-          <Toolbar sx={{ paddingBottom: '0 2rem' }}>
+          <Toolbar
+            sx={{
+              paddingBottom: '0 2rem',
+            }}
+          >
             <Box
               sx={{
                 flexGrow: 1,
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'flex-start',
+                justifyContent: 'space-between',
+                paddingInline: '22rem',
+                '@media (max-width: 600px)': {
+                  paddingInline: '1rem',
+                },
               }}
             >
-              <Tooltip color="primary" title="Home" arrow sx={{ color: 'primary' }}>
-                <IconButton
-                  component={RouterLink}
-                  to="/"
-                  color="primary"
-                  sx={{
-                    '&:hover': {
-                      color: 'secondary.main',
-                      transform: 'scale(1.2)',
-                      transition: 'transform 0.3s ease-in-out',
-                    },
-                  }}
-                >
-                  <HomeIcon />
-                </IconButton>
-              </Tooltip>
-              <NavigationMenu />
-            </Box>
-            <Box>
-              {isLoggedIn && isProfilePage && (
-                <FilterSortPopover
-                  open={filterOpen}
-                  anchorEl={filterPopoverAnchorEl}
-                  handlePopoverOpen={handleFilterPopoverOpen}
-                  handlePopoverClose={handleFilterPopoverClose}
-                  orderBy={orderBy}
-                  direction={direction}
-                  handleOrderChange={handleOrderChange}
-                  handleDirectionChange={handleDirectionChange}
-                  handleFilter={handleFilter}
-                />
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <Tooltip color="primary" title="Home" arrow sx={{ color: 'primary' }}>
+                  <IconButton
+                    component={RouterLink}
+                    to="/"
+                    color="primary"
+                    sx={{
+                      '&:hover': {
+                        color: 'secondary.main',
+                        transform: 'scale(1.2)',
+                        transition: 'transform 0.3s ease-in-out',
+                      },
+                    }}
+                  >
+                    <HomeIcon />
+                  </IconButton>
+                </Tooltip>
+                <NavigationMenu />
+              </Box>
+              <Box>
+                {isLoggedIn && isProfilePage && (
+                  <FilterSortPopover
+                    open={filterOpen}
+                    anchorEl={filterPopoverAnchorEl}
+                    handlePopoverOpen={handleFilterPopoverOpen}
+                    handlePopoverClose={handleFilterPopoverClose}
+                    orderBy={orderBy}
+                    direction={direction}
+                    handleOrderChange={handleOrderChange}
+                    handleDirectionChange={handleDirectionChange}
+                    handleFilter={handleFilter}
+                  />
+                )}
+              </Box>
+              {isLoggedIn ? (
+                <UserMenu handleLogout={handleLogout} />
+              ) : (
+                <>
+                  <RouterLink to="/register">
+                    <CustomButton color="inherit">Register</CustomButton>
+                  </RouterLink>
+                  <Button color="primary" component={RouterLink} to="/login">
+                    Login
+                  </Button>
+                </>
               )}
-            </Box>
-            {isLoggedIn ? (
-              <UserMenu handleLogout={handleLogout} />
-            ) : (
-              <>
-                <RouterLink to="/register">
-                  <CustomButton color="inherit">Register</CustomButton>
-                </RouterLink>
-                <Button color="primary" component={RouterLink} to="/login">
-                  Login
-                </Button>
-              </>
-            )}
-            <Box
-              sx={{
-                display: 'flex',
-              }}
-            >
-              <ThemeSelector theme={theme} setTheme={setTheme} />
+              <Box
+                sx={{
+                  display: 'flex',
+                }}
+              >
+                <ThemeSelector theme={theme} setTheme={setTheme} />
+              </Box>
             </Box>
           </Toolbar>
         </AppBar>

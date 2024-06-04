@@ -18,7 +18,14 @@ function NavigationMenu() {
 
   return (
     <>
-      <Button color="primary" onClick={handleMenuClick}>
+      <Button
+        id="menu"
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        variant="contained"
+        color="primary"
+        onClick={handleMenuClick}
+      >
         Menu
       </Button>
       <Menu
@@ -45,6 +52,7 @@ function NavigationMenu() {
         </MenuItem>
         {isLoggedIn && (
           <MenuItem
+            id="add-new"
             onClick={handleMenuClose}
             component={RouterLink}
             to="/add"

@@ -30,6 +30,45 @@ export const lightTheme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Maven Pro',
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          fontSize: '2.5rem',
+          fontFamily: 'Oxygen',
+        },
+        h2: {
+          fontSize: '2rem',
+          fontFamily: 'Oxygen',
+        },
+        h3: {
+          fontSize: '1.75rem',
+          fontFamily: 'Oxygen',
+        },
+        h4: {
+          fontSize: '1.5rem',
+          fontFamily: 'Oxygen',
+        },
+        h5: {
+          fontSize: '1.25rem',
+          fontFamily: 'Oxygen',
+        },
+        h6: {
+          fontSize: '1rem',
+          fontFamily: 'Oxygen',
+        },
+        body1: {
+          fontSize: '1rem',
+          fontFamily: 'Maven Pro',
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `
         html {
@@ -70,6 +109,45 @@ export const darkTheme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Maven Pro',
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          fontSize: '2.5rem',
+          fontFamily: 'Oxygen',
+        },
+        h2: {
+          fontSize: '2rem',
+          fontFamily: 'Oxygen',
+        },
+        h3: {
+          fontSize: '1.75rem',
+          fontFamily: 'Oxygen',
+        },
+        h4: {
+          fontSize: '1.5rem',
+          fontFamily: 'Oxygen',
+        },
+        h5: {
+          fontSize: '1.25rem',
+          fontFamily: 'Oxygen',
+        },
+        h6: {
+          fontSize: '1rem',
+          fontFamily: 'Oxygen',
+        },
+        body1: {
+          fontSize: '1rem',
+          fontFamily: 'Maven Pro',
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `
         html {
@@ -111,12 +189,55 @@ export const customTheme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Maven Pro',
+        },
+      },
+    },
+    MuiTypography: {
+      styleOverrides: {
+        h1: {
+          fontSize: '2.5rem',
+          fontFamily: 'Oxygen',
+        },
+        h2: {
+          fontSize: '2rem',
+          fontFamily: 'Oxygen',
+        },
+        h3: {
+          fontSize: '1.75rem',
+          fontFamily: 'Oxygen',
+        },
+        h4: {
+          fontSize: '1.5rem',
+          fontFamily: 'Oxygen',
+        },
+        h5: {
+          fontSize: '1.25rem',
+          fontFamily: 'Oxygen',
+        },
+        h6: {
+          fontSize: '1rem',
+          fontFamily: 'Oxygen',
+        },
+        body1: {
+          fontSize: '1rem',
+          fontFamily: 'Maven Pro',
+        },
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `
+        html {
+          overflow-y: scroll;
+        },
         body {
-          background-color: #656bf1;
+                  background-color: #656bf1;
         }
       `,
     },
   },
 });
+

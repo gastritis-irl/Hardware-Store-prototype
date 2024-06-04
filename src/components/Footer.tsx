@@ -22,7 +22,7 @@ function Footer() {
           }}
         >
           <Typography variant="body1" color="inherit">
-            © 2023 Hardware Store
+            © 2024 Example Store
           </Typography>
           <Box
             sx={{

@@ -29,7 +29,7 @@ function ProductFilter({ onFilter }: HardwareFilterProps) {
     setMinPrice(Number(params.get('minPrice')) || undefined);
     setMaxPrice(Number(params.get('maxPrice')) || undefined);
     setTextSearch(params.get('textSearch') || '');
-    setCategory(params.get('category') || '');
+    setCategory(params.get('categoryName') || '');
   }, [location]);
 
   const handleSubmit = (event: React.FormEvent) => {

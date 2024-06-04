@@ -1,25 +1,30 @@
 import React from 'react';
 import { Box, Card, CardMedia, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useFilterSort } from '../hooks/useFilterSort';
 
 type CategoryCardProps = {
-  category: {
+  selectedCategory: {
     id: number;
     name: string;
     description: string;
   };
 };
 
-function CategoryCard({ category }: CategoryCardProps) {
+function CategoryCard({ selectedCategory }: CategoryCardProps) {
   const navigate = useNavigate();
+  const { orderBy, direction, minPrice, maxPrice, textSearch } = useFilterSort();
 
   const handleClick = () => {
-    navigate(`/list?category=${category.name}`);
+    navigate({
+      pathname: '/list',
+      search: `?categoryName=${selectedCategory.name}&minPrice=${minPrice}&maxPrice=${maxPrice}&textSearch=${textSearch}&orderBy=${orderBy}&direction=${direction}`,
+    });
   };
 
   return (
     <Card
-      key={category.id}
+      key={selectedCategory.id}
       sx={{
         width: 250,
         height: 300,
@@ -50,9 +55,14 @@ function CategoryCard({ category }: CategoryCardProps) {
           paddingTop: 1,
         }}
       >
-        {category.name}
+        {selectedCategory.name}
       </Typography>
-      <CardMedia component="img" height="260" image={`/${category.name.toLowerCase()}.png`} alt={category.name} />
+      <CardMedia
+        component="img"
+        height="260"
+        image={`/${selectedCategory.name.toLowerCase()}.png`}
+        alt={selectedCategory.name}
+      />
       <Box
         sx={{
           position: 'absolute',
@@ -71,7 +81,7 @@ function CategoryCard({ category }: CategoryCardProps) {
         }}
         className="mediaOverlay"
       >
-        <Typography variant="body2">{category.description}</Typography>
+        <Typography variant="body2">{selectedCategory.description}</Typography>
       </Box>
     </Card>
   );

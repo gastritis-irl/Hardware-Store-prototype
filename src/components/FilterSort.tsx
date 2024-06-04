@@ -5,9 +5,6 @@ import ProductFilter from './ProductFilter';
 type FilterSortComponentProps = {
   orderBy: string;
   direction: string;
-  // minPrice: number | undefined;
-  // maxPrice: number | undefined;
-  // textSearch: string;
   handleOrderChange: (event: SelectChangeEvent) => void;
   handleDirectionChange: (event: SelectChangeEvent) => void;
   handleFilter: (mPrice: number, maPrice: number, tSearch: string, category: string) => void;

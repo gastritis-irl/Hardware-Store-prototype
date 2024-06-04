@@ -49,7 +49,14 @@ function ProductsGrid({
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          zIndex: 1,
+        }}
+      >
         <Grid container spacing={2}>
           {data.products.map((part: Product) => (
             <Grid
