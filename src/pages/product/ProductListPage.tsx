@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import HardwarePartsGrid from '../../components/HardwarePartsGrid';
+import ProductsGrid from '../../components/ProductsGrid';
 import FilterSort from '../../components/FilterSort';
 import { useFilterSort } from '../../hooks/useFilterSort';
 
-function HardwareListPage() {
+function ProductListPage() {
   const {
     orderBy,
     direction,
@@ -39,7 +39,7 @@ function HardwareListPage() {
         handleDirectionChange={handleDirectionChange}
         handleFilter={handleFilter}
       />
-      <HardwarePartsGrid
+      <ProductsGrid
         orderBy={orderBy}
         direction={direction}
         minPrice={minPrice}
@@ -51,4 +51,4 @@ function HardwareListPage() {
   );
 }
 
-export default HardwareListPage;
+export default ProductListPage;

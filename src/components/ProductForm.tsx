@@ -10,19 +10,19 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { HardwarePart } from '../types/HardwarePart';
+import { Product } from '../types/Product';
 import { useGetCategories } from '../hooks/category/useCategories';
 
 type HardwareFormProps = {
-  partData: HardwarePart;
-  setPartData: (partData: HardwarePart) => void;
+  partData: Product;
+  setPartData: (partData: Product) => void;
   handleSubmit: (event: React.FormEvent) => void;
   formTitle: string;
   submitButtonText: string;
   icon: React.ReactElement;
 };
 
-function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText, icon }: HardwareFormProps) {
+function ProductForm({ partData, setPartData, handleSubmit, formTitle, submitButtonText, icon }: HardwareFormProps) {
   const { data: categories } = useGetCategories(1, 14);
   const [selectedCategory, setSelectedCategory] = useState(partData.categoryName);
 
@@ -59,8 +59,17 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
           {formTitle}
         </Typography>
       </Box>
-      <TextField label="Name" name="name" value={partData.name} onChange={handleChange} variant="outlined" fullWidth />
       <TextField
+        id="name"
+        label="Name"
+        name="name"
+        value={partData.name}
+        onChange={handleChange}
+        variant="outlined"
+        fullWidth
+      />
+      <TextField
+        id="manufacturer"
         label="Manufacturer"
         name="manufacturer"
         value={partData.manufacturer}
@@ -85,6 +94,7 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         </Select>
       </FormControl>
       <TextField
+        id="price"
         label="Price($)"
         name="price"
         value={partData.price}
@@ -94,6 +104,7 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         fullWidth
       />
       <TextField
+        id="description"
         label="Description"
         name="description"
         value={partData.description}
@@ -102,6 +113,7 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
         fullWidth
       />
       <Button
+        id="submit"
         type="submit"
         variant="contained"
         color="primary"
@@ -115,4 +127,4 @@ function HardwareForm({ partData, setPartData, handleSubmit, formTitle, submitBu
   );
 }
 
-export default HardwareForm;
+export default ProductForm;

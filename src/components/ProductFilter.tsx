@@ -8,7 +8,7 @@ type HardwareFilterProps = {
   onFilter: (minPrice: number, maxPrice: number, textSearch: string, category: string) => void;
 };
 
-function HardwareFilter({ onFilter }: HardwareFilterProps) {
+function ProductFilter({ onFilter }: HardwareFilterProps) {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
 
@@ -29,13 +29,13 @@ function HardwareFilter({ onFilter }: HardwareFilterProps) {
     setMinPrice(Number(params.get('minPrice')) || undefined);
     setMaxPrice(Number(params.get('maxPrice')) || undefined);
     setTextSearch(params.get('textSearch') || '');
-    setCategory(params.get('category') || '');
+    setCategory(params.get('categoryName') || '');
   }, [location]);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     onFilter(Number(minPrice), Number(maxPrice), textSearch, category);
-    queryClient.invalidateQueries({ queryKey: ['hardwareParts'] });
+    queryClient.invalidateQueries({ queryKey: ['products'] });
     const orderBy = params.get('orderBy') || 'id';
     const direction = params.get('direction') || 'asc';
     navigate({
@@ -121,4 +121,4 @@ function HardwareFilter({ onFilter }: HardwareFilterProps) {
   );
 }
 
-export default HardwareFilter;
+export default ProductFilter;

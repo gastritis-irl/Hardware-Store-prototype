@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGetCategories } from '../hooks/category/useCategories';
 import CategoryCard from '../components/CategoryCard';
 import CustomButton from '../util/CustomButton';
+import CustomLoader from '../components/CustomLoader';
 
 function HomePage() {
   const [page, setPage] = React.useState(1);
@@ -20,8 +21,6 @@ function HomePage() {
       const width = window.innerWidth;
       if (width < 600) {
         setPageSize(4);
-        // } else if (width < 960) {
-        //   setPageSize(4);
       } else if (width < 1150) {
         setPageSize(6);
       } else {
@@ -40,24 +39,37 @@ function HomePage() {
   return (
     <Container>
       <Box
+        id="home-page"
         sx={{
+          paddingTop: '2rem',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           minHeight: '70vh',
           gap: '1rem',
         }}
       >
-        <Typography variant="h2" color="primary">
-          Welcome to Hardware Store
-        </Typography>
+        {/* <Typography variant="h2" color="primary"> */}
+        {/*   Welcome to The Example Store */}
+        {/* </Typography> */}
         <Typography variant="h5" color="text.secondary">
-          Your one-stop shop for all your hardware needs
+          Your one-stop shop for all your needs
         </Typography>
-        <CustomButton onClick={() => navigate('/list')}>
-          <Typography variant="h5" color="inherit">
-            {' '}
+        <CustomButton
+          onClick={() => navigate('/list')}
+          sx={{
+            alignContent: 'left',
+            width: 'fit-content',
+          }}
+        >
+          <Typography
+            variant="h5"
+            color="inherit"
+            sx={{
+              alignContent: 'left',
+            }}
+          >
             Browse to your heart&apos;s content
           </Typography>
         </CustomButton>
@@ -76,10 +88,10 @@ function HomePage() {
             justifyContent: 'center',
           }}
         >
-          {isLoading && <Typography>Loading...</Typography>}
+          {isLoading && <CustomLoader />}
           {isError && <Typography>An error occurred while fetching data</Typography>}
           {categories &&
-            categories.categories.map((category) => <CategoryCard key={category.id} category={category} />)}
+            categories.categories.map((category) => <CategoryCard key={category.id} selectedCategory={category} />)}
         </Grid>
         <Typography variant="h6" color="text.secondary">
           ... or something else?

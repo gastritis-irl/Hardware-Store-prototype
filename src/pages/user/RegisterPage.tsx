@@ -104,7 +104,7 @@ function RegisterPage() {
           },
         }}
       />
-      <Button type="submit" variant="contained" color="primary" size="large">
+      <Button id="register" type="submit" variant="contained" color="primary" size="large">
         <AddCircle sx={{ marginRight: '0.5rem' }} />
         Register
       </Button>

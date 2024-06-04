@@ -1,4 +1,4 @@
-export type HardwarePart = {
+export type Product = {
   id: number;
   createdAt: string;
   updatedAt: string;

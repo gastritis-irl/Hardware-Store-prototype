@@ -1,13 +1,10 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import HardwareFilter from './HardwareFilter';
+import ProductFilter from './ProductFilter';
 
 type FilterSortComponentProps = {
   orderBy: string;
   direction: string;
-  // minPrice: number | undefined;
-  // maxPrice: number | undefined;
-  // textSearch: string;
   handleOrderChange: (event: SelectChangeEvent) => void;
   handleDirectionChange: (event: SelectChangeEvent) => void;
   handleFilter: (mPrice: number, maPrice: number, tSearch: string, category: string) => void;
@@ -42,7 +39,7 @@ function FilterSort({
         },
       }}
     >
-      <HardwareFilter onFilter={handleFilter} />
+      <ProductFilter onFilter={handleFilter} />
       <Box
         sx={{
           display: 'flex',

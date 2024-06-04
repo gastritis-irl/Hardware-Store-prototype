@@ -2,17 +2,17 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import ClownIcon from '@mui/icons-material/EmojiEmotions';
-import { useHardwarePart } from '../../hooks/hardware/useHardwarePart';
-import { useDeleteHardwarePart } from '../../hooks/hardware/useDeleteHardwarePart';
+import { useProduct } from '../../hooks/product/useProduct';
+import { useDeleteProduct } from '../../hooks/product/useDeleteProduct';
 import { useSnackbar } from '../../context/SnackbarContext';
 import CustomButton from '../../util/CustomButton';
 import { useAuthContext } from '../../context/AuthContext';
 
-function HardwareDetailPage() {
+function ProductDetailPage() {
   const { id } = useParams();
   const idNumber = Number(id) || 0;
-  const { data: partData, isLoading, isError } = useHardwarePart(idNumber);
-  const deletePartMutation = useDeleteHardwarePart();
+  const { data: partData, isLoading, isError } = useProduct(idNumber);
+  const deletePartMutation = useDeleteProduct();
   const snackbar = useSnackbar();
   const { authState } = useAuthContext();
   const navigate = useNavigate();
@@ -83,4 +83,4 @@ function HardwareDetailPage() {
   );
 }
 
-export default HardwareDetailPage;
+export default ProductDetailPage;

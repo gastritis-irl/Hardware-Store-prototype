@@ -1,12 +1,12 @@
 import React, { Suspense, useMemo, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Container, CssBaseline, Theme, ThemeProvider } from '@mui/material';
+import { CircularProgress, Container as MuiContainer, CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import HardwareListPage from './pages/hardware/HardwareListPage';
-import HardwareCreatePage from './pages/hardware/HardwareCreatePage';
-import HardwareEditPage from './pages/hardware/HardwareEditPage';
-import HardwareDetailPage from './pages/hardware/HardwareDetailPage';
+import ProductListPage from './pages/product/ProductListPage';
+import ProductCreatePage from './pages/product/ProductCreatePage';
+import ProductEditPage from './pages/product/ProductEditPage';
+import ProductDetailPage from './pages/product/ProductDetailPage';
 import { Navbar } from './components/Navbar';
 import { lightTheme } from './util/Theme';
 import { SnackbarProvider } from './context/SnackbarContext';
@@ -20,6 +20,8 @@ import AdminOnlyGuardPage from './pages/guardPages/AdminOnlyGuardPage';
 import AdminOrOwnerGuardPage from './pages/guardPages/AdminOrOwnerGuardPage';
 import AuthenticatedUserGuardPage from './pages/guardPages/AuthenticatedUserGuardPage';
 import UserEditPage from './pages/user/UserEditPage';
+import MyParticles from './util/MyParticles';
+import CustomLoader from './components/CustomLoader';
 
 function App() {
   const [theme, setTheme] = useState(lightTheme);
@@ -31,22 +33,30 @@ function App() {
   };
 
   return (
-    <Container sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Router>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <ThemeProvider theme={theme}>
+            <Navbar theme={theme} setTheme={switchTheme} />
             <CssBaseline />
-            <SnackbarProvider>
-              {' '}
-              <Router>
-                <Navbar theme={theme} setTheme={switchTheme} />
-                <Suspense fallback={<div>Loading...</div>}>
+            <MuiContainer
+              sx={{
+                flexGrow: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh',
+                width: '100%',
+              }}
+            >
+              <SnackbarProvider>
+                <MyParticles theme={theme} />
+                <Suspense fallback={<CustomLoader />}>
                   <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/list" element={<HardwareListPage />} />
-                    <Route path="/add" element={<HardwareCreatePage />} />
-                    <Route path="/edit/:id" element={<HardwareEditPage />} />
-                    <Route path="/detail/:id" element={<HardwareDetailPage />} />
+                    <Route path="/list" element={<ProductListPage />} />
+                    <Route path="/add" element={<ProductCreatePage />} />
+                    <Route path="/edit/:id" element={<ProductEditPage />} />
+                    <Route path="/detail/:id" element={<ProductDetailPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/profile/:id" element={<ProfilePage />} />
@@ -57,13 +67,13 @@ function App() {
                   </Routes>
                 </Suspense>
                 <Footer />
-              </Router>
-            </SnackbarProvider>
+              </SnackbarProvider>
+              <ReactQueryDevtools initialIsOpen={false} />
+            </MuiContainer>
           </ThemeProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>
       </QueryClientProvider>
-    </Container>
+    </Router>
   );
 }
 

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Transform } from '@mui/icons-material';
-import { useHardwarePart } from '../../hooks/hardware/useHardwarePart';
-import { useUpdateHardwarePart } from '../../hooks/hardware/useUpdateHardwarePart';
-import { HardwarePart } from '../../types/HardwarePart';
-import HardwareForm from '../../components/HardwareForm';
+import { useProduct } from '../../hooks/product/useProduct';
+import { useUpdateProduct } from '../../hooks/product/useUpdateProduct';
+import { Product } from '../../types/Product';
+import ProductForm from '../../components/ProductForm';
 import { useSnackbar } from '../../context/SnackbarContext';
 import { useAdminOrOwnerGuard } from '../../hooks/guard/useAdminOrOwnerGuard';
 
-function HardwareEditPage() {
+function ProductEditPage() {
   const { id } = useParams();
   const snackbar = useSnackbar();
   const idNumber = Number(id) || 0;
-  const [partData, setPartData] = useState<HardwarePart>({
+  const [partData, setPartData] = useState<Product>({
     id: 0,
     createdAt: '',
     updatedAt: '',
@@ -25,8 +25,8 @@ function HardwareEditPage() {
   });
 
   const navigate = useNavigate();
-  const { data: fetchedPartData } = useHardwarePart(idNumber);
-  const updatePartMutation = useUpdateHardwarePart();
+  const { data: fetchedPartData } = useProduct(idNumber);
+  const updatePartMutation = useUpdateProduct();
 
   useEffect(() => {
     if (fetchedPartData) {
@@ -52,7 +52,7 @@ function HardwareEditPage() {
         }) => {
           navigate(`/detail/${data.id}`);
           if (snackbar) {
-            snackbar.openSnackbar('hardware part updated successfully!', 'success');
+            snackbar.openSnackbar('product part updated successfully!', 'success');
           }
         },
         onError: (error: Error) => {
@@ -66,7 +66,7 @@ function HardwareEditPage() {
 
   return (
     <>
-      <HardwareForm
+      <ProductForm
         partData={partData}
         setPartData={setPartData}
         handleSubmit={handleSubmit}
@@ -78,4 +78,4 @@ function HardwareEditPage() {
   );
 }
 
-export default HardwareEditPage;
+export default ProductEditPage;
